@@ -1,5 +1,5 @@
 {
-  "name": "synth-ed-server",
+  "name": "mern-server",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
@@ -8,8 +8,10 @@
     "watch": "nodemon",
     "seed": "node seeders/seed.js"
   },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
   "dependencies": {
-    "tone": "^14.7.77",
     "apollo-server-express": "^3.6.1",
     "express": "^4.17.2",
     "graphql": "^16.2.0",
