@@ -1,8 +1,9 @@
-
+import React from 'react';
+import './index.css'
 
 function App() {
   return (
-    <div className="app">
+    <div>
 <h1>This is app.js</h1>
     </div>
   );
