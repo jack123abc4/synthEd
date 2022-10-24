@@ -1,0 +1,38 @@
+[
+    {
+        "freq": 261.63,  
+        "position":0
+    },
+    {
+        "freq": 293.66,
+        "position":1
+    },
+    {
+        "freq": 329.63,
+        "position":2
+    },
+    {
+        "freq":349.23,
+        "position":3
+    },
+    {
+        "freq":369.99,
+        "position":4
+    },
+    {
+        "freq":392,
+        "position":5
+    },
+    {
+        "freq":440,
+        "position":6 
+    },
+    {
+        "freq":493.88,
+        "position":7
+    },
+    {
+        "freq":523.25,
+        "position":8
+    }
+]
