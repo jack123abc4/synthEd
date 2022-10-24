@@ -1,11 +1,10 @@
-import React from 'react'
+import React from 'react';
+import Nav from '../components/nav/Nav';
 
 const Account = () => {
-  return (
-    <div>
-      Account
-    </div>
-  )
+  return <div>
+    <Nav />
+  </div>
 }
 
 export default Account
