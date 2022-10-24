@@ -1,11 +1,10 @@
-import React from 'react'
+import React from 'react';
+import Nav from '../components/nav/Nav';
 
 const About = () => {
-  return (
-    <div>
-      About
-    </div>
-  )
+  return <div>
+    <Nav />
+  </div>
 }
 
 export default About
