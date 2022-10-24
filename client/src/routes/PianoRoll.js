@@ -1,11 +1,9 @@
-import React from 'react'
+import React from 'react';
+import Nav from '../components/nav/Nav';
 
 const PianoRoll = () => {
-  return (
-    <div>
-      Piano Roll
-    </div>
-  )
+  return <div>
+    <Nav />
+  </div>
 }
-
 export default PianoRoll
