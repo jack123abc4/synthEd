@@ -6,6 +6,7 @@ import Account from './routes/Account';
 import Piano from './routes/Piano';
 import PianoRoll from './routes/PianoRoll';
 import Resources from './routes/Resources';
+import Play from './routes/Play';
 import { Routes, Route } from 'react-router-dom'
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
       <Route path='/resources' element={<Resources />} />
       <Route path='/account' element={<Account />} />
       <Route path='/about' element={<About />} />
+      <Route path='/play' element={<Play />} />
     </Routes>  
     </>
   );

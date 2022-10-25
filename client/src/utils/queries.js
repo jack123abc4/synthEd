@@ -15,6 +15,15 @@ export const QUERY_NOTES = gql`
   }
 `;
 
+export const QUERY_TRACKS = gql`
+  query allTracks {
+    tracks {
+      _id
+    }
+  }
+`
+
+
 export const QUERY_NOTES_BY_TRACK = gql`
   query allNotesByTrack($_id: String) { 
     tracks(_id: $_id) {
@@ -30,4 +39,16 @@ export const QUERY_NOTES_BY_TRACK = gql`
   }
 `;
 
+export const QUERY_NOTE_BY_ID = gql`
+  query getNoteById($_id: String) {
+    note(_id: $_id) {
+      freq
+      position
+      _id
+      track {
+        _id
+      }
+    }
+  }
+`
 
