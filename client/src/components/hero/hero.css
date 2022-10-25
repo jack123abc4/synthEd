@@ -36,67 +36,22 @@
     text-align: center;
 }
 
-.hero .content h3 {
+.content .btn {
+    margin: 1rem 0.2rem;
+}
+
+.content h3 {
     font-size: 4rem;
     padding: 0.6rem 0 1.5rem;
     color: white;
+    text-align: center;
 }
 
-.hero .content h3 span {
+.content h3 span {
     color: rgb(15, 248, 229);
-}
-/* 
-.hero {
-    background-color: #232121;
-    display: flex;
-    height: 100vh;
-    margin: 0;
-    padding: 0;
-    color: white;
-}
-.hero .left {
-    flex: 0.5;
-    overflow: hidden;
-}
-.hero .left .imgContainer {
-    width: 700px;
-    height: 700px;
-    border-radius: 50%;
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
-    float: right;
-}
-.hero .left .imgContainer img {
-    height: 90%;
-}
-.hero .right {
-    flex: 0.5;
-    position: relative;
-}
-.hero .right .wrapper {
-    width: 100%;
-    height: 100%;
-    padding-left: 50px;
-    display: flex;
-    flex-direction: column;
-    justify-content: top;
-}
-.hero .right .wrapper h1 {
-    font-size: 60px;
-    margin: 10px 0;
     text-align: center;
 }
-.hero .right .wrapper h3 {
-    font-size: 30px;
-    text-align: center;
-}
-.hero .right .wrapper h3 span {
-    font-size: inherit;
-    color: #32abd0;
-    text-align: center;
-}
-.hero .right .wrapper h3 .ityped-cursor {
+.content h3 .ityped-cursor {
     animation: blink 1s infinite;
 }
 @keyframes blink {
@@ -107,35 +62,17 @@
         opacity: 0;
    }
 }
-.hero .right p {
-    text-align: center;
-}
-.hero .right a {
-    position: absolute;
-    bottom: 150px;
-    left: 50%;
-}
-.hero .right a img {
-    width: 30px;
-    animation: arrowBlink 2s infinite;
-}
-@keyframes arrowBlink {
-    100% {
-        opacity: 0;
-   }
-} */
   
   .muzieknootjes {
-
+    position: absolute;
     background-color: black;
     color: white;
     display: block;
     margin: auto;
-    position: relative;
-    width: 50%;
-    min-width: 300px;
+    width: 100%;
     height: 200px;
     border: 0px solid #000;
+    z-index: 2;
   }
   
   .noot-1,
@@ -188,5 +125,12 @@
     100% {
       transform: scale(1.5) translate(100%, -100%);
       opacity: 0;
+    }
+  }
+
+  @media screen and (max-width: 640px) {
+    .content h3 {
+        font-size: 3rem;
+
     }
   }
