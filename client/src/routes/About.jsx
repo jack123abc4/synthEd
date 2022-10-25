@@ -12,7 +12,7 @@ const About = () => {
     <AboutHero />
     <div className='sections'>
       <Story />
-      {/* <Testimonials /> */}
+      <Testimonials />
       <Contact />
     </div>
   </div>
