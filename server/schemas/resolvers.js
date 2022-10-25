@@ -15,6 +15,10 @@ const resolvers = {
     tracks: async () => {
       return await Track.find({}).populate('notes');
     },
+    note: async (parent, { _id }) => {
+      const params = _id ? { _id } : {};
+      return Note.find(params);
+    },
     notes: async () => {
       return await Note.find({});
     }

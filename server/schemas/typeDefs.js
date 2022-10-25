@@ -23,6 +23,7 @@ const typeDefs = gql`
   type Query {
     track(_id: String): [Track]
     tracks: [Track]
+    note(_id: String): [Note]
     notes: [Note]
   }
 `;
