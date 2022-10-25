@@ -11,7 +11,7 @@ body {
   background-color: black;
 }
 
-h1, h4, p, a {
+h1, h4, p, a, li {
   color: white;
   text-decoration: none;
 }

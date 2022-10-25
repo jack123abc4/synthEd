@@ -10,7 +10,6 @@ export const QUERY_NOTES = gql`
       decay
       position
       length
-      track
     }
   }
 `;
