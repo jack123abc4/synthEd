@@ -8,12 +8,17 @@ const resolvers = {
     //     populate: 'professor'
     //   });
     // },
+    track: async(parent, {_id}) => {
+      const params = _id ? { _id } : {};
+      return await Track.find(params).populate('notes');
+    },
     tracks: async () => {
       return await Track.find({}).populate('notes');
     },
     notes: async () => {
       return await Note.find({});
     }
+
   }
 };
 
