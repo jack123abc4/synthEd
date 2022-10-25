@@ -1,16 +1,33 @@
-.c {        width: 100%;
-    height: calc(100vh - 70px);
+.contact {
+     height: 100vh;
     position: relative;
-    top: 70px;
-    scroll-behavior: smooth;
-    scroll-snap-type: y mandatory;
-    scrollbar-width: none; //for firefox
-    &::-webkit-scrollbar{
-        display: none;
-    }
 
-    > *{
-        width: 100vw;
-        height: calc(100vh - 70px);
-        scroll-snap-align: start;
-    }}
+    h2 {
+        color: white;
+    }
+}
+
+.c-bg {
+    width: 20px;
+    height: 100%;
+    background-color: rgb(15, 248, 229);
+    position: absolute;
+}
+
+.c-wrapper {
+    padding: 50pc;
+    display: flex;
+}
+
+.c-left {
+    flex: 1;
+}
+
+.c-right {
+    flex: 1;
+}
+
+.c-title {
+    font-size: 60px;
+    width: 80%;
+}

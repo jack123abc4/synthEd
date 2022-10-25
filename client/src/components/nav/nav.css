@@ -28,6 +28,10 @@
     display: none;
 }
 
+.hamburger:hover {
+    cursor: pointer;
+}
+
 @media screen and (max-width: 1040px) {
     .nav-menu {
         flex-direction: column;

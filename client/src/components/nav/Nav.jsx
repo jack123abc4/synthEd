@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import './nav.css';
 import { Link } from 'react-router-dom';
-import { FaBars, FaTimes } from 'react-icons/fa';
+import {  FaTimes } from 'react-icons/fa';
+import { GiMusicalScore } from 'react-icons/gi';
 
 
 const Nav = () => {
@@ -33,7 +34,7 @@ const Nav = () => {
             </li>
         </ul>
          <div className='hamburger' onClick={handleClick}>
-            {click ? (<FaTimes size={20} style={{color: 'white'}} />) : (<FaBars size={20} style={{color: 'white'}} />)}
+            {click ? (<FaTimes size={20} style={{color: 'white'}} />) : (<GiMusicalScore size={40} style={{color: 'white'}} />)}
             
             
          </div>
