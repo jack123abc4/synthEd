@@ -1,6 +1,6 @@
 
 import { useRef, useState } from "react";
-import "./contact.css";
+import "./contact.scss";
 import emailjs from 'emailjs-com';
 
 

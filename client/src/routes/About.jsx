@@ -10,12 +10,12 @@ const About = () => {
   return <div className='about-nav'>
     <Nav />
     <AboutHero />
-    <div className='sections'>
+    <div className='section'>
       <Story />
       <Testimonials />
       <Contact />
-    </div>
-  </div>
+      </div>
+      </div>
 }
 
 export default About

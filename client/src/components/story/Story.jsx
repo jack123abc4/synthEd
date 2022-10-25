@@ -1,4 +1,4 @@
-import "./story.css";
+import "./story.scss";
 import { useState } from "react";
 
 export default function Story() {
