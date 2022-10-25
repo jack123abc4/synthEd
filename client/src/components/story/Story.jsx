@@ -13,14 +13,14 @@ export default function Story() {
     },
     {
       id: "2",
-      icon: "./assets/globe.png",
+      icon: "./assets/green.png",
       title: "Who are we?",
       desc: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
       img: "assets/trio.png",
     },
     {
       id: "3",
-      icon: "./assets/writing.png",
+      icon: "./assets/red.png",
       title: "Now it's your turn!",
       desc: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
       img: "assets/wave.png",

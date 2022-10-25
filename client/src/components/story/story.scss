@@ -7,7 +7,21 @@
      width: 100%;
      height: 100vh;
      position: relative;
-     scroll-snap-type: y mandatory;
+
+	 .arrow {
+		height: 50px;
+		position: absolute;
+		cursor: pointer;
+
+		&.left {
+			left: 100px;
+			transform: rotateY(180deg);
+		}
+
+		&.right {
+			right: 100px;
+		}
+	 }
 
 
 
@@ -16,6 +30,7 @@
 		display: flex;
 		position: absolute;
 		left: 0;
+		transition: all 1s ease-out;
 
 		.container {
 			width: 100vw;
@@ -88,84 +103,3 @@
 
 
 }
-
-
-//  .story .arrow {
-// 	 height: 50px;
-// 	 position: absolute;
-// 	 cursor: pointer;
-// }
-//  .story .arrow.left {
-// 	 left: 100px;
-// 	 transform: rotateY(180deg);
-// }
-//  .story .arrow.right {
-// 	 right: 100px;
-// }
-//  .story .slider {
-// 	 height: 350px;
-// 	 display: flex;
-// 	 position: absolute;
-// 	 left: 0;
-// 	 transition: all 1s ease-out;
-// }
-//  .story .slider .container {
-// 	 width: 100vw;
-// 	 display: flex;
-// 	 align-items: center;
-// 	 justify-content: center;
-// }
-//  .story .slider .container .item {
-// 	 width: 700px;
-// 	 height: 100%;
-// 	 background-color: white;
-// 	 color: black;
-// 	 border-radius: 20px;
-// 	 display: flex;
-// 	 align-items: center;
-// 	 justify-content: center;
-// }
-//  .story .slider .container .item .left {
-// 	 flex: 4;
-// 	 height: 80%;
-// 	 display: flex;
-// 	 align-items: center;
-// 	 justify-content: center;
-// }
-//  .story .slider .container .item .left .leftContainer {
-// 	 width: 90%;
-// 	 height: 70%;
-// 	 display: flex;
-// 	 flex-direction: column;
-// 	 justify-content: space-between;
-// }
-
-//  .story .slider .container .item .left .leftContainer .imgContainer img {
-// 	 width: 80px;
-// }
-//  .story .slider .container .item .left .leftContainer h2 {
-// 	 font-size: 20px;
-// }
-//  .story .slider .container .item .left .leftContainer p {
-// 	 font-size: 13px;
-// 	 color: black;
-// }
-//  .story .slider .container .item .left .leftContainer span {
-// 	 font-size: 12px;
-// 	 font-weight: 600;
-// 	 text-decoration: underline;
-// 	 cursor: pointer;
-// }
-//  .story .slider .container .item .right {
-// 	 flex: 8;
-// 	 height: 100%;
-// 	 display: flex;
-// 	 align-items: center;
-// 	 justify-content: center;
-// 	 overflow: hidden;
-// }
-//  .story .slider .container .item .right img {
-// 	 width: 400px;
-// 	 transform: rotate(-10deg);
-// }
- 
