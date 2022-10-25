@@ -1,6 +1,7 @@
 .contact {
      height: 100vh;
     position: relative;
+    overflow: hidden;
 
     h2 {
         color: white;
@@ -24,17 +25,14 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-top: 200px;
 
-    .emailContainer {
+
+
+    .container {
         display: flex;
         align-items: center;
         justify-content: center;
-        padding-top: 50px;
         
-        img {
-            border-radius: 25%;
-        }
     }
 }
 
@@ -61,21 +59,28 @@
         flex-direction: column;
         align-items: center;
         justify-content: space-around;
+        margin-top: 20px;
 
         input {
-            width: 300px;
-            height: 30px;
-            font-size: 15px;
+            width: 50%;
+            height: 50px;
+            font-size: 20px;
+            margin: 10px 0px;
+            padding-left: 10px;
+            border-radius: 8px;
         }
 
         textarea {
-            width: 300px;
-            font-size: 15px;
+            width: 50%;
+            font-size: 20px;
+            margin: 10px 0px;
+            padding-left: 10px;
+            border-radius: 8px;
         }
 
         button {
             width: 150px;
-            height: 30px;
+            height: 50px;
             color: white;
             background:linear-gradient(45deg, #0FF8E5, black );
             background-color: rgb(15, 248, 229);
@@ -83,10 +88,19 @@
             border-radius: 10px;
             font-weight: 500;
             cursor: pointer;
+            margin-top: 5px;
+
+            &.focus {
+                outline: none;
+            }
+        }
+
+        .thanks {
+            color: white;
+            margin-top: 5px;
         }
     }
 
 
 }
-
 }
