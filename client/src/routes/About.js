@@ -4,15 +4,16 @@ import AboutHero from '../components/about/AboutHero';
 import Story from '../components/story/Story';
 import Testimonials from '../components/testimonials/Testimonials';
 import Contact from '../components/contact/Contact';
+import './about.scss'
 
 const About = () => {
-  return <div className='about'>
+  return <div className='about-nav'>
     <Nav />
     <AboutHero />
     <div className='sections'>
-    <Story />
-    <Testimonials />
-    <Contact />
+      <Story />
+      {/* <Testimonials /> */}
+      <Contact />
     </div>
   </div>
 }

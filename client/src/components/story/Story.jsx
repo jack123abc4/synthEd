@@ -1,7 +1,7 @@
 import "./story.css";
 import { useState } from "react";
 
-export default function Works() {
+export default function Story() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const data = [
     {
@@ -34,7 +34,7 @@ export default function Works() {
   };
 
   return (
-    <div className="works" id="works">
+    <div className="story" id="story">
       <div
         className="slider"
         style={{ transform: `translateX(-${currentSlide * 100}vw)` }}
