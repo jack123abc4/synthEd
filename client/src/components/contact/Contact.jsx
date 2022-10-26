@@ -23,13 +23,15 @@ export default function Contact() {
       <div className="contact-wrapper">
       <div className="left">
 
-        <div class="party">
-    <div class="body">
-    <div class="container">
-        <div class="ring"></div>
-        <div class="ring"></div>
-        <div class="ring"></div>
-    </div>
+        <div className="party">
+      <div className="wave-container">
+        <div className="wave"></div>
+        <div className="wave"></div>
+        <div className="wave"></div>
+        <div className="wave"></div>
+        <div className="wave"></div>
+        <div className="wave"></div>
+        <div className="wave"></div>
     </div>
     </div>
       </div>
