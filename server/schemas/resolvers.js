@@ -17,12 +17,30 @@ const resolvers = {
     },
     note: async (parent, { _id }) => {
       const params = _id ? { _id } : {};
-      return Note.find(params);
+      return await Note.find(params);
     },
     notes: async () => {
       return await Note.find({});
     }
 
+  },
+
+  Mutation: {
+    createNoteByName: async (parent, {noteName}) => {
+      return await Note.create({name: noteName});
+    },
+    addNoteToTrack: async (parent, { trackId, noteId }) => {
+      const note = await Note.findOne({_id: noteId})
+      return await Track.findOneAndUpdate(
+        {_id: trackId},
+        {
+          $addToSet: { notes: note}
+        }
+      )
+    },
+    createTrack: async (parent, {trackType}) => {
+      return await Track.create({type: trackType})
+    }
   }
 };
 

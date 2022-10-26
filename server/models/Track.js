@@ -12,7 +12,7 @@ const trackSchema = new Schema(
     },
     type: {
         type: String,
-        default: "Sequencer"
+        default: "piano"
     },
     bpm: {
       type: Number,
