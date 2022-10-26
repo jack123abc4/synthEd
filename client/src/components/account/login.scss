@@ -5,6 +5,15 @@
     display: flex;
     align-items: center;
     justify-content: center;
+
+
+}
+
+.login-title {
+    position: absolute;
+    top: 150px;
+    color: black;
+    z-index: 3;
 }
 
 .wrapper {
@@ -90,6 +99,7 @@ input {
     width: 250px;
     background: linear-gradient(-45deg, #0FF8E5, white);
     border: none;
+    border-radius: 9px;
     padding: 15px 0px;
 
     &:hover {
@@ -98,3 +108,4 @@ input {
         color: white;
     }
 }
+

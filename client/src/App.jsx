@@ -6,9 +6,10 @@ import Account from './routes/Account';
 import Piano from './routes/Piano';
 import PianoRoll from './routes/PianoRoll';
 import Resources from './routes/Resources';
+import Login from './routes/Login';
 import { ApolloProvider } from "@apollo/react-hooks";
 import ApolloClient from "apollo-boost";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 
 const client = new ApolloClient({
   request: (operation) => {
@@ -23,6 +24,7 @@ const client = new ApolloClient({
 });
 
 function App() {
+  const user = true;
   return (
     
     <ApolloProvider  client ={client}>
@@ -33,8 +35,11 @@ function App() {
       <Route path='/pianoRoll' element={<PianoRoll />} />
       <Route path='/piano' element={<Piano />} />
       <Route path='/resources' element={<Resources />} />
-      <Route path='/account' element={<Account />} />
+      <Route path='/account' element={user ? <Account /> : <Navigate to="/login" />}
+          />
       <Route path='/about' element={<About />} />
+      <Route path='/login' element={user ? <Navigate to="/account" /> : <Login />}
+          />
     </Routes>  
     </>
     </Router>

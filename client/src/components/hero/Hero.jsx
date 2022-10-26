@@ -44,10 +44,10 @@ const Hero = () => {
           </h3>
 
           <div>
-            <Link to="/account" className="btn">
+            <Link to="/login" className="btn">
               Sign Up
             </Link>
-            <Link to="/account" className="btn btn-light">
+            <Link to="/login" className="btn btn-light">
               Login
             </Link>
           </div>
