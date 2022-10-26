@@ -62,8 +62,10 @@
         opacity: 0;
    }
 }
+
+
   
-  .muzieknootjes {
+  .music-notes {
     position: absolute;
     background-color: black;
     color: white;
@@ -75,35 +77,35 @@
     z-index: 2;
   }
   
-  .noot-1,
-  .noot-2,
-  .noot-3,
-  .noot-4 {
+  .note-1,
+  .note-2,
+  .note-3,
+  .note-4 {
     position: absolute;
     animation: notes 2s infinite linear;
     font-size: 35px;
     opacity: 0;
   }
   
-  .noot-1 {
+  .note-1 {
     top: 60px;
     left: 0;
     animation-delay: 0.5s;
   }
   
-  .noot-2 {
+  .note-2 {
     top: 30px;
     left: 30%;
     animation-delay: 1s;
   }
   
-  .noot-3 {
+  .note-3 {
     top: 90px;
     left: 60%;
     animation-delay: 1.5s;
   }
   
-  .noot-4 {
+  .note-4 {
     top: 40px;
     left: 90%;
     animation-delay: 2s;

@@ -34,7 +34,7 @@
         .wave {
             display: block;
             position: relative;
-            background-color: white;
+            background:linear-gradient(to right, white, #0FF8E5,  #e41cf8, #93ff2d );
             height: 100%;
             width: 10px;
             border-radius: 50px;
@@ -50,6 +50,7 @@
                     height: 100%;
                 }
             }
+
         }
 
         .wave:nth-child(1) {
