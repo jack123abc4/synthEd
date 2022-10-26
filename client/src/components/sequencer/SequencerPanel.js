@@ -6,8 +6,9 @@ import { CREATE_TRACK, CREATE_NOTE_BY_NAME, ADD_NOTE_TO_TRACK }  from '../../uti
 
 
 
-const SequencerPanel =  () => {
+const SequencerPanel = () => {
     // const [createTrack, { error }] = useMutation(CREATE_TRACK);
+    // const [createNote, { error }] = useMutation(CREATE_NOTE_BY_NAME);
     // const t = await createTrack({
     //     variables: {
     //         trackType: "sequencer"
@@ -34,7 +35,8 @@ const SequencerPanel =  () => {
             noteSquareCol.push(
             <Grid key={index}>
                 <NoteSquare
-                textContent = {noteName}
+                noteName = {noteName}
+
                 />
                 
             </Grid>)

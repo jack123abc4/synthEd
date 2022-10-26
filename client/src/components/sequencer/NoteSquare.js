@@ -7,7 +7,7 @@ import { QUERY_NOTE_BY_ID } from '../../utils/queries.js';
 const NoteSquare = (props) => {
     const [active, setActive] = useState(false);
     const [noteObj, setNoteObj] = useState(props.noteObj);
-    const [textContent, setTextContent] = useState(props.textContent);
+    const [textContent, setTextContent] = useState(props.noteName);
 
     const handleClick = (event) => {
       console.log(`Clicked! Changed state ${active} to ${!active}`);
