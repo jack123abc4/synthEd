@@ -16,7 +16,7 @@ const SequencerPanel = () => {
     // })
     // const [trackObj, setTrackObj] = useState(t);
 
-    const noteNames = ["Bb","C", "D", "F", "G", "Bb"];
+    const noteNames = ["Bb","C", "D", "F", "G"];
     // 4 - floor(index%16 / 5)
 
     let index = 0;
