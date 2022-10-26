@@ -1,0 +1,147 @@
+.contact {
+     height: 100vh;
+    position: relative;
+    overflow: hidden;
+
+    h2 {
+        color: white;
+    }
+    .line {
+        width: 20px;
+        height: 100%;
+        background-color: #0FF8E5;
+        position: absolute;
+    }
+
+
+.contact-wrapper {
+    padding: 50px;
+    display: flex;
+}
+
+.left {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    .wave-container {
+        height: 70px;
+        display: flex;
+        align-items: center;
+
+        .wave {
+            display: block;
+            position: relative;
+            background:white;
+            height: 100%;
+            width: 10px;
+            border-radius: 50px;
+            margin: 0 5px;
+            animation: dance 1.3s linear infinite;
+
+            @keyframes dance {
+
+                50% {
+                    height: 20%;
+                }
+                100% {
+                    height: 100%;
+                }
+            }
+
+        }
+
+        .wave:nth-child(1) {
+            animation-delay: 0s;
+        }
+        .wave:nth-child(2) {
+            animation-delay: 0.3s;
+        }
+        .wave:nth-child(3) {
+            animation-delay: 0.6s;
+        }
+        .wave:nth-child(4) {
+            animation-delay: 0.9s;
+        }
+        .wave:nth-child(5) {
+            animation-delay: 0.6s;
+        }
+        .wave:nth-child(6) {
+            animation-delay: 0.3s;
+        }
+        .wave:nth-child(7) {
+            animation-delay: 0s;
+        }
+    }
+}
+
+.right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    .contact-info {
+        font-weight: 200;
+        font-size: 1.6rem;
+        align-items: center;
+        justify-content: center;
+        b {
+            color: #0FF8E5;
+        }
+    }
+    form {
+        width: 70%;
+        height: 70%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+        margin-top: 20px;
+
+        input {
+            width: 50%;
+            height: 50px;
+            font-size: 20px;
+            margin: 10px 0px;
+            padding-left: 10px;
+            border-radius: 8px;
+        }
+
+        textarea {
+            width: 50%;
+            font-size: 20px;
+            margin: 10px 0px;
+            padding-left: 10px;
+            border-radius: 8px;
+        }
+
+        button {
+            width: 150px;
+            height: 50px;
+            color: white;
+            background:linear-gradient(45deg, #0FF8E5, black );
+            background-color: rgb(15, 248, 229);
+            border: none;
+            border-radius: 10px;
+            font-weight: 500;
+            cursor: pointer;
+            margin-top: 5px;
+
+            &.focus {
+                outline: none;
+            }
+        }
+
+        .thanks {
+            color: white;
+            margin-top: 5px;
+        }
+    }
+
+
+}
+}
