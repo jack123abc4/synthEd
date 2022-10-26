@@ -6,7 +6,8 @@ import { QUERY_TRACKS, QUERY_NOTES, QUERY_NOTES_BY_TRACK } from '../utils/querie
 
 import NoteSquare from '../components/sequencer/NoteSquare'
 import SequencerPanel from '../components/sequencer/SequencerPanel'
-console.log("Hello, world!");
+
+
 const Play = () => {
     // const { trackLoading, trackData } = useQuery(QUERY_TRACKS);
     // const trackList = trackData;

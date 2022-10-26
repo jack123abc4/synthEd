@@ -4,6 +4,7 @@ const typeDefs = gql`
   type Track {
     _id: ID!
     name: String
+    type: String
     bpm: Int
     length: Int
     notes: [Note]

@@ -5,23 +5,49 @@ import { QUERY_NOTE_BY_ID } from '../../utils/queries.js';
 
 
 function NoteSquare(props) {
-    // const [active, setActive] = false;
+    const [active, setActive] = useState(false);
 
-
-    return (
-        
+    const handleClick = (event) => {
+      console.log(`Clicked! Changed state ${active} to ${!active}`);
+      setActive(!active);
+    }
+    
+    if (!active) {
+      return (
         <Box
           sx={{
             width: 50,
             height: 50,
-            backgroundColor: 'primary.dark',
+            backgroundColor: 'rgb(15, 248, 229)',
+            opacity: [0.5, 0.5, 0.5],
             '&:hover': {
-              backgroundColor: 'primary.main',
-              opacity: [0.9, 0.8, 0.7],
+              backgroundColor: 'rgb(15, 248, 229)',
+              opacity: [0.8,0.8,0.8]
+              
             },
-          }}
+          }} 
+          onClick = {handleClick}
         />
       );
+    }
+    else {
+      return (
+        <Box
+          sx={{
+            width: 50,
+            height: 50,
+            backgroundColor: 'rgb(15, 248, 229)',
+            '&:hover': {
+              backgroundColor: 'rgb(15, 248, 229)',
+              opacity: [0.8,0.8,0.8]
+              
+            },
+          }} 
+          onClick = {handleClick}
+        />
+      );
+    }
+    
     
 }
 
