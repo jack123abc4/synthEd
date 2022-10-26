@@ -1,5 +1,10 @@
 [
     {
-        "name": "song1"
+        "name": "song1",
+        "type": "piano"
+    },
+    {
+        "name": "sequencer",
+        "type": "sequencer"
     }
 ]

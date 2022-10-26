@@ -16,6 +16,10 @@ const noteSchema = new Schema(
         required: true,
         default: "sine",
     },
+    name: {
+      type: String,
+      default: "C4"
+    },
     gain: {
         type: Number,
         required: true,

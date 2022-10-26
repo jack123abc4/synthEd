@@ -2,16 +2,18 @@ const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
   type Track {
-    _id: ID
+    _id: ID!
     name: String
+    type: String
     bpm: Int
     length: Int
     notes: [Note]
   }
 
   type Note {
-    _id: ID
+    _id: ID!
     freq: Float
+    name: String
     type: String
     gain: Float
     decay: Float
@@ -21,8 +23,16 @@ const typeDefs = gql`
   }
 
   type Query {
+    track(_id: String): [Track]
     tracks: [Track]
+    note(_id: String): [Note]
     notes: [Note]
+  }
+
+  type Mutation {
+    createNoteByName(noteName: String): Note
+    addNoteToTrack(trackId: String, noteId: String): Track
+    createTrack(trackType: String): Track
   }
 `;
 

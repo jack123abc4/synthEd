@@ -4,11 +4,10 @@
 /node_modules
 /.pnp
 .pnp.js
-/synthed
-
 # testing
 /coverage
-
+/templates
+/synthed
 # production
 /build
 
