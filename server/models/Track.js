@@ -10,6 +10,10 @@ const trackSchema = new Schema(
     name: {
       type: String,
     },
+    type: {
+        type: String,
+        default: "piano"
+    },
     bpm: {
       type: Number,
       required: true,

@@ -6,21 +6,28 @@ import Account from './routes/Account';
 import Piano from './routes/Piano';
 import PianoRoll from './routes/PianoRoll';
 import Resources from './routes/Resources';
-import { ApolloProvider } from "@apollo/react-hooks";
-import ApolloClient from "apollo-boost";
+// import { ApolloProvider } from "@apollo/react-hooks";
+// import ApolloClient from "apollo-boost";
+import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
+import Play from './routes/Play';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
+// const client = new ApolloClient({
+//   request: (operation) => {
+//     const token = localStorage.getItem("id_token");
+//     operation.setContext({
+//       headers: {
+//         authorization: token ? `Bearer ${token}` : "",
+//       },
+//     });
+//   },
+//   uri: "/graphql",
+// });
 const client = new ApolloClient({
-  request: (operation) => {
-    const token = localStorage.getItem("id_token");
-    operation.setContext({
-      headers: {
-        authorization: token ? `Bearer ${token}` : "",
-      },
-    });
-  },
-  uri: "/graphql",
+  uri: 'http://localhost:3001/graphql',
+  cache: new InMemoryCache(),
 });
+
 
 function App() {
   return (
@@ -35,11 +42,11 @@ function App() {
       <Route path='/resources' element={<Resources />} />
       <Route path='/account' element={<Account />} />
       <Route path='/about' element={<About />} />
+      <Route path='/play' element={<Play />} />
     </Routes>  
     </>
     </Router>
     </ApolloProvider>
   );
 }
-
 export default App;
