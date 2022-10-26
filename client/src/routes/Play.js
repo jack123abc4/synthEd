@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { useMutation, useQuery, gql } from '@apollo/client';
-
+import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
 import { QUERY_TRACKS, QUERY_NOTES, QUERY_NOTES_BY_TRACK } from '../utils/queries';
 
 import NoteSquare from '../components/sequencer/NoteSquare'
+import SequencerPanel from '../components/sequencer/SequencerPanel'
 console.log("Hello, world!");
 const Play = () => {
     // const { trackLoading, trackData } = useQuery(QUERY_TRACKS);
@@ -23,16 +25,92 @@ const Play = () => {
         <div>
             <h1>Done loading!</h1>
             
-            <ul>
+            {/* <ul>
                 {noteList.map((note) => {
                     return (
-                        <li>
+                        <li id={note.freq}>
                             {note.freq}
                         </li>
                     )
                 }
             )}
-        </ul>
+        </ul> */}
+        <div>
+            <Grid container >
+                <Grid >
+                    <Box  
+          sx={{
+            width: 50,
+            height: 50,
+            backgroundColor: 'primary.dark',
+            '&:hover': {
+              backgroundColor: 'primary.main',
+              opacity: [0.9, 0.8, 0.7],
+            },
+          }}
+        />
+                    <Box 
+          sx={{
+            width: 50,
+            height: 50,
+            backgroundColor: 'primary.dark',
+            '&:hover': {
+              backgroundColor: 'primary.main',
+              opacity: [0.9, 0.8, 0.7],
+            },
+          }}
+        />
+                    <Box 
+          sx={{
+            width: 50,
+            height: 50,
+            backgroundColor: 'primary.dark',
+            '&:hover': {
+              backgroundColor: 'primary.main',
+              opacity: [0.9, 0.8, 0.7],
+            },
+          }}
+        />
+                </Grid>
+                <Grid>
+                    <Box 
+          sx={{
+            width: 50,
+            height: 50,
+            backgroundColor: 'primary.dark',
+            '&:hover': {
+              backgroundColor: 'primary.main',
+              opacity: [0.9, 0.8, 0.7],
+            },
+          }}
+        />
+                    <Box 
+          sx={{
+            width: 50,
+            height: 50,
+            backgroundColor: 'primary.dark',
+            '&:hover': {
+              backgroundColor: 'primary.main',
+              opacity: [0.9, 0.8, 0.7],
+            },
+          }}
+        />
+                    <Box 
+          sx={{
+            width: 50,
+            height: 50,
+            backgroundColor: 'primary.dark',
+            '&:hover': {
+              backgroundColor: 'primary.main',
+              opacity: [0.9, 0.8, 0.7],
+            },
+          }}
+        />
+                </Grid>
+            </Grid>
+            </div>
+        {/* <div><SequencerPanel /></div> */}
+
         </div>
     )
     // return(
