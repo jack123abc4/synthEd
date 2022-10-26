@@ -24,7 +24,7 @@ const client = new ApolloClient({
 });
 
 function App() {
-  const user = true;
+  const user = false;
   return (
     
     <ApolloProvider  client ={client}>
