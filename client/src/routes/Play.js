@@ -35,83 +35,12 @@ const Play = () => {
                 }
             )}
         </ul> */}
-        <div>
-            <Grid container >
-                <Grid >
-                    <Box  
-          sx={{
-            width: 50,
-            height: 50,
-            backgroundColor: 'primary.dark',
-            '&:hover': {
-              backgroundColor: 'primary.main',
-              opacity: [0.9, 0.8, 0.7],
-            },
-          }}
-        />
-                    <Box 
-          sx={{
-            width: 50,
-            height: 50,
-            backgroundColor: 'primary.dark',
-            '&:hover': {
-              backgroundColor: 'primary.main',
-              opacity: [0.9, 0.8, 0.7],
-            },
-          }}
-        />
-                    <Box 
-          sx={{
-            width: 50,
-            height: 50,
-            backgroundColor: 'primary.dark',
-            '&:hover': {
-              backgroundColor: 'primary.main',
-              opacity: [0.9, 0.8, 0.7],
-            },
-          }}
-        />
-                </Grid>
-                <Grid>
-                    <Box 
-          sx={{
-            width: 50,
-            height: 50,
-            backgroundColor: 'primary.dark',
-            '&:hover': {
-              backgroundColor: 'primary.main',
-              opacity: [0.9, 0.8, 0.7],
-            },
-          }}
-        />
-                    <Box 
-          sx={{
-            width: 50,
-            height: 50,
-            backgroundColor: 'primary.dark',
-            '&:hover': {
-              backgroundColor: 'primary.main',
-              opacity: [0.9, 0.8, 0.7],
-            },
-          }}
-        />
-                    <Box 
-          sx={{
-            width: 50,
-            height: 50,
-            backgroundColor: 'primary.dark',
-            '&:hover': {
-              backgroundColor: 'primary.main',
-              opacity: [0.9, 0.8, 0.7],
-            },
-          }}
-        />
-                </Grid>
-            </Grid>
-            </div>
-        {/* <div><SequencerPanel /></div> */}
-
+        
+          <div>
+            <SequencerPanel />
+          </div>
         </div>
+          
     )
     // return(
         // <ul>

@@ -8,20 +8,26 @@ function SequencerPanel() {
     const height = 16;
     const noteSquareGrid = [];
     for (let row=0; row < width; row ++) {
-        const noteSquareRow = [];
+        
+        const noteSquareCol = [];
         for (let col = 0; col < height; col++) {
-            noteSquareRow.push(
+            noteSquareCol.push(
             <Grid key={index}>
-                <NoteSquare>xs</NoteSquare>
+                <NoteSquare></NoteSquare>
                 
             </Grid>)
             index++;
         }
-        noteSquareGrid.push(noteSquareRow);
+        noteSquareGrid.push(
+        <Grid>
+            {noteSquareCol.map(function(square) {
+                return(square)
+            })}
+            </Grid>)
     }
-    return(<Grid>
-        {noteSquareGrid.map(function(row) {
-            return (row)
+    return(<Grid container>
+        {noteSquareGrid.map(function(col) {
+            return (col)
         })}
     </Grid>)
 };
