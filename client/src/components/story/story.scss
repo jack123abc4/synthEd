@@ -1,0 +1,105 @@
+.story {
+    background:linear-gradient(45deg, #0FF8E5, black );
+	 background-color: rgb(15, 248, 229);
+	 display: flex;
+	 align-items: center;
+	 justify-content: center;
+     width: 100%;
+     height: 100vh;
+     position: relative;
+
+	 .arrow {
+		height: 50px;
+		position: absolute;
+		cursor: pointer;
+
+		&.left {
+			left: 100px;
+			transform: rotateY(180deg);
+		}
+
+		&.right {
+			right: 100px;
+		}
+	 }
+
+
+
+	 .slider {
+		height: 350px;
+		display: flex;
+		position: absolute;
+		left: 0;
+		transition: all 1s ease-out;
+
+		.container {
+			width: 100vw;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+
+			.item {
+				width: 700px;
+				height: 100%;
+				background-color: white;
+				border-radius: 20px;
+				display: flex;
+				justify-content: center;
+
+				.left {
+					flex: 4;
+					height: 80%;
+					display: flex;
+					align-items: center;
+					justify-content: center;
+
+					.leftContainer {
+						width: 90%;
+						height: 70%;
+						display: flex;
+						flex-direction: column;
+						justify-content: space-between;
+
+						.imgContainer {
+							width: 40px;
+							height: 40px;
+							border-radius: 50%;
+							display: flex;
+							align-items: center;
+							justify-content: center;
+
+							img {
+								width: 80px;
+								padding-left: 30px;
+							}
+						}
+						h2 {
+							font-size: 20px;
+						}
+						p {
+							font-size: 15px;
+							color: black;
+						}
+					}
+				}
+
+				.right {
+					flex: 8;
+					height: 100%;
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					overflow: hidden;
+
+					img {
+						width: 400px;
+						transform: rotate(-10deg);
+					}
+				}
+			
+			}
+		}
+	 }
+
+
+}
