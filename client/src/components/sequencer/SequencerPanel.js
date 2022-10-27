@@ -39,6 +39,9 @@ const SequencerPanel = () => {
             <Grid key={index}>
                 <NoteSquare
                 noteName = {noteName}
+                position = {row}
+                measure = {measure}
+                currentlyPlaying = {currentlyPlaying}
                 />
                 
             </Grid>)
@@ -52,6 +55,29 @@ const SequencerPanel = () => {
             </Grid>)
     }
 
+    const playNote = (event) => {
+
+    }
+
+    const measureBack = (event) => {
+        if (measure > 0) {
+            setMeasure(measure-1);
+        }
+        else {
+            setMeasure(15);
+        }
+    }
+
+    const measureForward = (event) => {
+        if (measure < 15) {
+            setMeasure(measure+1);
+        }
+        else {
+            setMeasure(0);
+        }
+        
+    }
+
     const handleClick = (event) => {
         console.log(`Clicked! Changed state ${currentlyPlaying} to ${!currentlyPlaying}`);
         setCurrentlyPlaying(!currentlyPlaying);
@@ -63,6 +89,8 @@ const SequencerPanel = () => {
     <button onClick={handleClick}>Play</button>
     <h2 >{playState}</h2>
     <h2>Measure: {measure}</h2>
+    <button onClick={measureBack}>Back</button>
+    <button onClick={measureForward}>Forward</button>
     <Grid container>
         {noteSquareGrid.map(function(col) {
             return (col)
