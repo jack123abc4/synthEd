@@ -30,6 +30,7 @@ const client = new ApolloClient({
 
 
 function App() {
+  const user = false;
   return (
     
     <ApolloProvider  client ={client}>
@@ -40,7 +41,9 @@ function App() {
       <Route path='/pianoRoll' element={<PianoRoll />} />
       <Route path='/piano' element={<Piano />} />
       <Route path='/resources' element={<Resources />} />
-      <Route path='/account' element={<Account />} />
+      <Route path='/account' element={user ? <Account /> : <Navigate to="/login" />}
+          />
+        <Route path='/register' element={<Register />} />
       <Route path='/about' element={<About />} />
       <Route path='/play' element={<Play />} />
     </Routes>  

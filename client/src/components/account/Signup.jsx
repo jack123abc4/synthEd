@@ -2,23 +2,23 @@ import React, { useState } from 'react';
 import './login.scss';
 import Axios from 'axios';
 
-const Login = () => {
-const [loginEmail, setLoginEmail] = useState("");
-const [loginPassword, setLoginPassword] = useState("");
-const login = () => {
-    Axios({
-      method: "POST",
-      data: {
-        email: loginEmail,
-        password: loginPassword,
-      },
-      withCredentials: true,
-      url: "http://localhost:3000/login",
-    }).then((res) => console.log(res));
-  };
+const Register = () => {
+    const [registerEmail, setRegisterEmail] = useState("");
+    const [registerPassword, setRegisterPassword] = useState("");
+    const register = () => {
+        Axios({
+          method: "POST",
+          data: {
+            email: registerEmail,
+            password: registerPassword,
+          },
+          withCredentials: true,
+          url: "http://localhost:3000/register",
+        }).then((res) => console.log(res));
+      };
   return (
     <div className='login'>
-        <h1 className='login-title'>Choose a Login Method</h1>
+        <h1 className='login-title'>Choose a Registration Method</h1>
         <div className="wrapper">
             <div className="left">
                 <div className="loginBtn google" >
@@ -38,13 +38,13 @@ const login = () => {
                 </div>
             
             <div className="right">
-                <input type="text" placeholder='Email' onChange={e => setLoginEmail(e.target.value)} />
-                <input type="text" placeholder='Password'onChange={e => setLoginPassword(e.target.value)}  />
-                <button className='submit' onClick={login}>Login</button>
+                <input type="text" placeholder='Email' onChange={e => setRegisterEmail(e.target.value)} />
+                <input type="text" placeholder='Password'onChange={e => setRegisterPassword(e.target.value)}  />
+                <button className='submit' onClick={register}>Login</button>
             </div>
         </div>
     </div>
   )
 }
 
-export default Login
+export default Register;
