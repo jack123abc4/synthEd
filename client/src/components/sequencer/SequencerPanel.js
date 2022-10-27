@@ -17,19 +17,33 @@ const SequencerPanel = () => {
     //     }
     // })
     // const [trackObj, setTrackObj] = useState(t);
-    const [measure, setMeasure] = useState(5);
+    const [measure, setMeasure] = useState(0);
     const [currentlyPlaying, setCurrentlyPlaying] = useState(false);
+    const [time, setTime] = useState(0);
+    const [startTime, setStartTime] = useState(0);
     let loop;
     let timer = null;
+    
 
     useEffect(() => {
-        Tone.start();
         loop = new Tone.Loop((time) => {
             // triggered every eighth note.
-            console.log(measure)
-            changeMeasure(1);
-        }, "4n");
+            // console.log(time)
+            const currentMeasure = measure
+            setTime(time);
+            const newMeasure = Math.floor(time-startTime)%16
+            setMeasure(newMeasure)
+        }, "4n").start(0);
     },[]);
+
+    // useEffect(() => {
+    //     Tone.start();
+    //     loop = new Tone.Loop((time) => {
+    //         // triggered every eighth note.
+    //         console.log(measure)
+    //         changeMeasure(2);
+    //     }, "4n").start(measure);
+    // },[]);
         
     
     // loop.start(0);
@@ -70,23 +84,26 @@ const SequencerPanel = () => {
     }
 
     const changeMeasure = (step) => {
+        const currentMeasure = measure
+        // console.log("measure at top: ",measure);
         if (step === -1) {
-            if (measure > 0) {
-                setMeasure(measure-1);
+            if (currentMeasure > 0) {
+                setMeasure(currentMeasure-1);
                 
             }
             else {
                 setMeasure(15);
             }
-            console.log("measure:",measure)
+            // console.log("measure:",currentMeasure)
         }
         else if (step === 1) {
-            if (measure < 15) {
-                console.log("measure forward",measure,measure+1);
-                setMeasure(measure+1);
+            
+            if (currentMeasure < 15) {
+                // console.log("measure forward",currentMeasure,currentMeasure+1);
+                setMeasure(currentMeasure+1);
             }
             else {
-                console.log("measure wrapped",measure);
+                // console.log("measure wrapped",currentMeasure);
                 setMeasure(0);
             }
         }
@@ -99,18 +116,18 @@ const SequencerPanel = () => {
         else {
             setMeasure(15);
         }
-        console.log("measure:",measure)
+        // console.log("measure:",measure)
     }
 
     
 
     const handleMeasureForward = () => {
         if (measure < 15) {
-            console.log("measure forward",measure);
+            // console.log("measure forward",measure);
             setMeasure(measure+1);
         }
         else {
-            console.log("measure wrapped",measure);
+            // console.log("measure wrapped",measure);
             setMeasure(0);
         }
         
@@ -125,8 +142,8 @@ const SequencerPanel = () => {
         console.log(`Clicked! Changed state ${currentlyPlaying} to ${!currentlyPlaying}`);
         setCurrentlyPlaying(!currentlyPlaying);
         if (!currentlyPlaying) {
+            setStartTime(Tone.now())
             Tone.Transport.start();
-            loop.start(measure);
             
         }
         else {
@@ -139,7 +156,8 @@ const SequencerPanel = () => {
     return(
         <>
     <button onClick={handlePlay}>{playState}</button>
-    <h2>Measure: {measure}</h2>
+    {/* <h2>Measure: {measure} {startTime} {time}</h2> */}
+    <h2>Measure: {measure} </h2>
     <button onClick={handleMeasureBack}>Back</button>
     <button onClick={handleMeasureForward}>Forward</button>
     <Grid container>
