@@ -14,7 +14,7 @@ const login = () => {
         password: loginPassword,
       },
       withCredentials: true,
-      url: "http://localhost:3000/login",
+      url: "https://synthed.herokuapp.com/login",
     }).then((res) => console.log(res));
   };
   return (
@@ -41,7 +41,7 @@ const login = () => {
                 <input type="email" placeholder='Email' onChange={e => setLoginEmail(e.target.value)} />
                 <input type="password" placeholder='Password'onChange={e => setLoginPassword(e.target.value)}  />
                 <button className='submit' onClick={login}>Login</button>
-                <Link to='/register'>New around here? Register</Link>
+                <Link to='/register'><span>New around here?</span> Register</Link>
             </div>
         </div>
     </div>
