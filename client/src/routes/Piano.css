@@ -1,21 +1,24 @@
-.pianoPage {
+.pianoKeys {
   align-items: center;
-}
-h1 {
   text-align: center;
 }
+
 .piano {
   display: flex;
   justify-content: center;
 }
+
 .white-key {
-  border: 1px solid #000000;
+  border: 1px solid black;
   width: 100px;
   height: 400px;
   background-color: white;
   color: red;
-  text-align: center;
+  display: flex;
+	align-items: flex-end;
+	padding: 5px 8px;
 }
+
 .black-key {
   background-color: black;
   width: 60px;
@@ -24,5 +27,8 @@ h1 {
   margin-right: -30px;
   z-index: 1;
   color: red;
-  text-align: center;
+  display: flex;
+	align-items: flex-end;
+	padding: 5px 8px;
 }
+

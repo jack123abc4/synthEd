@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 // import { useQuery } from '@apollo/client';
 import { QUERY_NOTE_BY_ID } from '../../utils/queries.js';
 
-
+// notesquare
 const NoteSquare = (props) => {
     const [active, setActive] = useState(false);
     const [noteObj, setNoteObj] = useState(props.noteObj);
