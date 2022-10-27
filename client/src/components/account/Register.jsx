@@ -39,8 +39,8 @@ const Register = () => {
                 </div>
             
             <div className="right">
-                <input type="text" placeholder='Email' onChange={e => setRegisterEmail(e.target.value)} />
-                <input type="text" placeholder='Password'onChange={e => setRegisterPassword(e.target.value)}  />
+                <input type="email" placeholder='Email' onChange={e => setRegisterEmail(e.target.value)} />
+                <input type="password" placeholder='Password'onChange={e => setRegisterPassword(e.target.value)}  />
                 <button className='submit' onClick={register}>Register</button>
                 <Link to='/login'>Have an account? Login</Link>
             </div>

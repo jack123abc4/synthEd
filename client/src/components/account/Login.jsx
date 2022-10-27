@@ -38,8 +38,8 @@ const login = () => {
                 </div>
             
             <div className="right">
-                <input type="text" placeholder='Email' onChange={e => setLoginEmail(e.target.value)} />
-                <input type="text" placeholder='Password'onChange={e => setLoginPassword(e.target.value)}  />
+                <input type="email" placeholder='Email' onChange={e => setLoginEmail(e.target.value)} />
+                <input type="password" placeholder='Password'onChange={e => setLoginPassword(e.target.value)}  />
                 <button className='submit' onClick={login}>Login</button>
                 <Link to='/register'>New around here? Register</Link>
             </div>
