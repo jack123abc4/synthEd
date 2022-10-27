@@ -1,6 +1,6 @@
 import React from "react";
 import Nav from "../components/nav/Nav";
-import Register from '../components/account/Signup';
+import Register from '../components/account/Register';
 
 
 const Signup = () => {

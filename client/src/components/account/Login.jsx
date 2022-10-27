@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './login.scss';
 import Axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const Login = () => {
 const [loginEmail, setLoginEmail] = useState("");
@@ -30,7 +31,6 @@ const login = () => {
                     <div className="loginBtn">
                     <img src="assets/twitterlogo.png" alt="" className='icon'/> Twitter
                     </div>
-                
                 </div>
                 <div className="center">
                     <div className="divider" />
@@ -41,6 +41,7 @@ const login = () => {
                 <input type="text" placeholder='Email' onChange={e => setLoginEmail(e.target.value)} />
                 <input type="text" placeholder='Password'onChange={e => setLoginPassword(e.target.value)}  />
                 <button className='submit' onClick={login}>Login</button>
+                <Link to='/register'>New around here? Register</Link>
             </div>
         </div>
     </div>

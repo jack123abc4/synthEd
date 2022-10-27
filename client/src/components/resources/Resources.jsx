@@ -15,7 +15,7 @@ const Resources = () => {
             <div className="imgContainer">
                 <img src="/assets/recording.png" alt="" />
             </div>
-            <a href='#portfolio'>
+            <a href='#search'>
         <img src="assets/arrow.png" className='arrow' alt=""></img>
       </a>
         </div>
