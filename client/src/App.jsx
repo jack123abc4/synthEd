@@ -6,6 +6,8 @@ import Account from './routes/Account';
 import Piano from './routes/Piano';
 import PianoRoll from './routes/PianoRoll';
 import Resources from './routes/Resources';
+import Register from './routes/Register';
+import Login from './routes/Login';
 // import { ApolloProvider } from "@apollo/react-hooks";
 // import ApolloClient from "apollo-boost";
 import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
@@ -41,9 +43,9 @@ function App() {
       <Route path='/pianoRoll' element={<PianoRoll />} />
       <Route path='/piano' element={<Piano />} />
       <Route path='/resources' element={<Resources />} />
-      <Route path='/account' element={user ? <Account /> : <Navigate to="/login" />}
-          />
-        <Route path='/register' element={<Register />} />
+      <Route path='/account' element={user ? <Account /> : <Navigate to="/login" />} />
+      <Route path='/login' element={user ? <Navigate to='/account' /> : <Login />} />
+      <Route path='/register' element={<Register />} />
       <Route path='/about' element={<About />} />
       <Route path='/play' element={<Play />} />
     </Routes>  
