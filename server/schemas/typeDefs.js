@@ -27,6 +27,7 @@ const typeDefs = gql`
     tracks: [Track]
     note(_id: String): [Note]
     notes: [Note]
+    trackByType(type: String): Track
   }
 
   type Mutation {

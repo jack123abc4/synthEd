@@ -22,6 +22,14 @@ export const QUERY_TRACKS = gql`
   }
 `
 
+export const QUERY_TRACK_BY_TYPE = gql`
+  query getTrackByType($trackType: String) {
+    trackByType(type: $trackType) {
+      _id
+    }
+  }
+`
+
 
 export const QUERY_NOTES_BY_TRACK = gql`
   query allNotesByTrack($_id: String) { 

@@ -21,6 +21,10 @@ const resolvers = {
     },
     notes: async () => {
       return await Note.find({});
+    },
+    trackByType: async(parent, {type}) => {
+      const params = type ? { type } : {};
+      return await Track.findOne(params);
     }
 
   },

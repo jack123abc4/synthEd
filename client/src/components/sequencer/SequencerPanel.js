@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import NoteSquare from './NoteSquare';
 import Grid from '@mui/material/Grid';
 import { useMutation } from '@apollo/client';
+import { GET_TRACK_BY_TYPE } from '../../utils/queries';
 import { CREATE_TRACK, CREATE_NOTE_BY_NAME, ADD_NOTE_TO_TRACK }  from '../../utils/mutations'
-
+import * as Tone from 'tone';
+import { letterSpacing } from '@mui/system';
 
 
 const SequencerPanel = () => {
@@ -15,10 +17,11 @@ const SequencerPanel = () => {
     //     }
     // })
     // const [trackObj, setTrackObj] = useState(t);
-
+    const [measure, setMeasure] = useState(0);
+    const [currentlyPlaying, setCurrentlyPlaying] = useState(false);
     const noteNames = ["Bb","C", "D", "F", "G"];
     // 4 - floor(index%16 / 5)
-
+    const synth = new Tone.Synth().toDestination();
     let index = 0;
     const width = 16;
     const height = 16;
@@ -36,7 +39,6 @@ const SequencerPanel = () => {
             <Grid key={index}>
                 <NoteSquare
                 noteName = {noteName}
-
                 />
                 
             </Grid>)
@@ -49,11 +51,24 @@ const SequencerPanel = () => {
             })}
             </Grid>)
     }
-    return(<Grid container>
+
+    const handleClick = (event) => {
+        console.log(`Clicked! Changed state ${currentlyPlaying} to ${!currentlyPlaying}`);
+        setCurrentlyPlaying(!currentlyPlaying);
+
+    }
+    let playState = currentlyPlaying ? "Play" : "Pause";
+    return(
+        <>
+    <button onClick={handleClick}>Play</button>
+    <h2 >{playState}</h2>
+    <h2>Measure: {measure}</h2>
+    <Grid container>
         {noteSquareGrid.map(function(col) {
             return (col)
         })}
-    </Grid>)
+    </Grid>
+    </>)
 };
 
 export default SequencerPanel;
