@@ -7,6 +7,7 @@ import * as Tone from 'tone';
 // notesquare
 const NoteSquare = (props) => {
     const [active, setActive] = useState(false);
+    
     // const [noteObj, setNoteObj] = useState({
 
     //   name: props.noteName,
@@ -24,7 +25,7 @@ const NoteSquare = (props) => {
       // setNoteObj(noteObj ? )
     }
     useEffect(() => {
-      console.log(`Pos ${props.position} Measure ${props.measure} Currently Play ${props.currentlyPlaying}` )
+      // console.log(`Pos ${props.position} Measure ${props.measure} Currently Play ${props.currentlyPlaying}` )
       if (active && props.position === props.measure && props.currentlyPlaying) {
         const synth = new Tone.AMSynth().toDestination();
         synth.triggerAttackRelease(props.noteName,"8n"); 

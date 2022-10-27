@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import NoteSquare from './NoteSquare';
 import Grid from '@mui/material/Grid';
 import { useMutation } from '@apollo/client';
@@ -17,8 +17,22 @@ const SequencerPanel = () => {
     //     }
     // })
     // const [trackObj, setTrackObj] = useState(t);
-    const [measure, setMeasure] = useState(0);
+    const [measure, setMeasure] = useState(5);
     const [currentlyPlaying, setCurrentlyPlaying] = useState(false);
+    let loop;
+    let timer = null;
+
+    useEffect(() => {
+        Tone.start();
+        loop = new Tone.Loop((time) => {
+            // triggered every eighth note.
+            console.log(measure)
+            changeMeasure(1);
+        }, "4n");
+    },[]);
+        
+    
+    // loop.start(0);
     const noteNames = ["Bb","C", "D", "F", "G"];
     // 4 - floor(index%16 / 5)
     const synth = new Tone.Synth().toDestination();
@@ -55,42 +69,79 @@ const SequencerPanel = () => {
             </Grid>)
     }
 
-    const playNote = (event) => {
-
+    const changeMeasure = (step) => {
+        if (step === -1) {
+            if (measure > 0) {
+                setMeasure(measure-1);
+                
+            }
+            else {
+                setMeasure(15);
+            }
+            console.log("measure:",measure)
+        }
+        else if (step === 1) {
+            if (measure < 15) {
+                console.log("measure forward",measure,measure+1);
+                setMeasure(measure+1);
+            }
+            else {
+                console.log("measure wrapped",measure);
+                setMeasure(0);
+            }
+        }
     }
-
-    const measureBack = (event) => {
+    const handleMeasureBack = () => {
         if (measure > 0) {
             setMeasure(measure-1);
+            
         }
         else {
             setMeasure(15);
         }
+        console.log("measure:",measure)
     }
 
-    const measureForward = (event) => {
+    
+
+    const handleMeasureForward = () => {
         if (measure < 15) {
+            console.log("measure forward",measure);
             setMeasure(measure+1);
         }
         else {
+            console.log("measure wrapped",measure);
             setMeasure(0);
         }
         
+        
     }
 
-    const handleClick = (event) => {
+    const handlePlay = async (event) => {
+        
+        // await Tone.start();
+
+        Tone.start();
         console.log(`Clicked! Changed state ${currentlyPlaying} to ${!currentlyPlaying}`);
         setCurrentlyPlaying(!currentlyPlaying);
+        if (!currentlyPlaying) {
+            Tone.Transport.start();
+            loop.start(measure);
+            
+        }
+        else {
+            Tone.Transport.stop();
+            
+        }
 
     }
-    let playState = currentlyPlaying ? "Play" : "Pause";
+    let playState = !currentlyPlaying ? "Play" : "Pause";
     return(
         <>
-    <button onClick={handleClick}>Play</button>
-    <h2 >{playState}</h2>
+    <button onClick={handlePlay}>{playState}</button>
     <h2>Measure: {measure}</h2>
-    <button onClick={measureBack}>Back</button>
-    <button onClick={measureForward}>Forward</button>
+    <button onClick={handleMeasureBack}>Back</button>
+    <button onClick={handleMeasureForward}>Forward</button>
     <Grid container>
         {noteSquareGrid.map(function(col) {
             return (col)
