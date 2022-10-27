@@ -10,7 +10,7 @@ import Resources from './routes/Resources';
 // import ApolloClient from "apollo-boost";
 import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
 import Play from './routes/Play';
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 
 // const client = new ApolloClient({
 //   request: (operation) => {
