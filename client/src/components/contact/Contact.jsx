@@ -8,7 +8,7 @@ export default function Contact() {
   const [done, setDone] =useState(false)
   const handleSubmit = (e) => {
     e.preventDefault();
-    emailjs.sendForm('service_oel3aem', 'template_rz0wwlw', formRef.current, 'uOEZu1fDeZRQbIEq6')
+    emailjs.sendForm('service_oel3aem', 'template_ge6pxgy', formRef.current, 'uOEZu1fDeZRQbIEq6')
     .then((result) => {
         console.log(result.text);
         e.target.reset()
