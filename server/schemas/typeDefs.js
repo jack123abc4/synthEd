@@ -19,7 +19,9 @@ const typeDefs = gql`
     decay: Float
     length: Int
     position: Int
+    active: Boolean
     track: Track
+
   }
 
   type Query {
@@ -32,7 +34,7 @@ const typeDefs = gql`
 
   type Mutation {
     createNoteByName(noteName: String): Note
-    addNoteToTrack(trackId: String, noteId: String): Track
+    addNoteToTrack(trackId: String, noteId: String, position: Int): Track
     createTrack(trackType: String): Track
   }
 `;

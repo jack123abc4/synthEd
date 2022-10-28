@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import { useMutation } from '@apollo/client'
 import Box from '@mui/material/Box';
+import { CREATE_NOTE_BY_NAME, ADD_NOTE_TO_TRACK } from '../../utils/mutations'
+
 // import { useQuery } from '@apollo/client';
 import { QUERY_NOTE_BY_ID } from '../../utils/queries.js';
 import * as Tone from 'tone';
@@ -7,7 +10,15 @@ import * as Tone from 'tone';
 // notesquare
 const NoteSquare = (props) => {
     const [active, setActive] = useState(false);
-    const [synth, setSynth] = useState(new Tone.AMSynth().toDestination())
+    const [createNoteObj, { data, loading, error }] = useMutation(CREATE_NOTE_BY_NAME);
+    const [addNoteToTrack, {trackData, trackLoading, trackError}] = useMutation(ADD_NOTE_TO_TRACK);
+    
+    let noteObj;
+    useEffect(async () => {
+      noteObj = await (await createNoteObj({variables: {noteName: props.noteName}})).data.createNoteByName;
+      console.log("Mutated! :",noteObj)
+      addNoteToTrack({variables: {trackId: props.trackId, noteId: noteObj._id, position: props.position}})
+    },[])
     // const [noteObj, setNoteObj] = useState({
 
     //   name: props.noteName,
@@ -24,13 +35,24 @@ const NoteSquare = (props) => {
       
       // setNoteObj(noteObj ? )
     }
+
+    // useEffect(() => {
+    //   // console.log(`Pos ${props.position} Measure ${props.measure} Currently Play ${props.currentlyPlaying}` )
+      
+    //   const synth = new Tone.AMSynth().toDestination();
+      
+    //   if (active && props.position === props.measure && props.currentlyPlaying) {
+    //     synth.triggerAttackRelease(props.noteName,"8n"); 
+    //   }
+    //   },[props.measure]);
     useEffect(() => {
-      // console.log(`Pos ${props.position} Measure ${props.measure} Currently Play ${props.currentlyPlaying}` )
-      if (active && props.position === props.measure && props.currentlyPlaying) {
-        synth.triggerAttackRelease(props.noteName,"8n"); 
-      }
-      },[props.measure]);
-    
+
+    },[]);
+
+
+
+
+
     if (!active) {
       return (
         <Box

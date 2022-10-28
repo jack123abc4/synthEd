@@ -40,6 +40,10 @@ const noteSchema = new Schema(
         required: true,
         default: 1
     },
+    active: {
+      type: Boolean,
+      default: false
+    },
     
     track: {
       type: Schema.Types.ObjectId,

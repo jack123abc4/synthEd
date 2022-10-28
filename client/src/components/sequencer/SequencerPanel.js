@@ -8,7 +8,7 @@ import * as Tone from 'tone';
 import { letterSpacing } from '@mui/system';
 
 
-const SequencerPanel = () => {
+const SequencerPanel = (props) => {
     // const [createTrack, { error }] = useMutation(CREATE_TRACK);
     // const [createNote, { error }] = useMutation(CREATE_NOTE_BY_NAME);
     // const t = await createTrack({
@@ -33,7 +33,7 @@ const SequencerPanel = () => {
             setTime(time);
             const newMeasure = Math.floor(time-startTime)%16
             setMeasure(newMeasure)
-        }, "4n").start(0);
+        }, "8n").start(0);
     },[]);
 
     // useEffect(() => {
@@ -70,6 +70,7 @@ const SequencerPanel = () => {
                 position = {row}
                 measure = {measure}
                 currentlyPlaying = {currentlyPlaying}
+                trackId = {props.trackId}
                 />
                 
             </Grid>)
@@ -156,8 +157,8 @@ const SequencerPanel = () => {
     return(
         <>
     <button onClick={handlePlay}>{playState}</button>
-    {/* <h2>Measure: {measure} {startTime} {time}</h2> */}
-    <h2>Measure: {measure} </h2>
+    <h2>Measure: {measure} {startTime} {time}</h2>
+    {/* <h2>Measure: {measure} </h2> */}
     <button onClick={handleMeasureBack}>Back</button>
     <button onClick={handleMeasureForward}>Forward</button>
     <Grid container>

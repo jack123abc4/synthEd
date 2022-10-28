@@ -33,8 +33,8 @@ const resolvers = {
     createNoteByName: async (parent, {noteName}) => {
       return await Note.create({name: noteName});
     },
-    addNoteToTrack: async (parent, { trackId, noteId }) => {
-      const note = await Note.findOne({_id: noteId})
+    addNoteToTrack: async (parent, { trackId, noteId, position }) => {
+      const note = await Note.findOneAndUpdate({_id: noteId},{position: position},{new:true})
       return await Track.findOneAndUpdate(
         {_id: trackId},
         {

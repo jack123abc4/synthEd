@@ -20,8 +20,8 @@ export const CREATE_NOTE_BY_NAME = gql`
 `
 
 export const ADD_NOTE_TO_TRACK = gql`
-    mutation addNoteToTrack($trackId: String, $noteId: String) {
-        addNoteToTrack(trackId: $trackId, noteId: $noteId ) {
+    mutation addNoteToTrack($trackId: String, $noteId: String, $position: Int) {
+        addNoteToTrack(trackId: $trackId, noteId: $noteId, position: $position ) {
             name
             type
             _id

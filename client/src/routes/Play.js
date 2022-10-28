@@ -12,13 +12,16 @@ const Play = () => {
     // const { trackLoading, trackData } = useQuery(QUERY_TRACKS);
     // const trackList = trackData;
 
-    const { loading, error, data } = useQuery(QUERY_NOTES);
+    const { loading, error, data } = useQuery(
+        QUERY_TRACK_BY_TYPE, {
+        variables: {trackType:"sequencer_main"}
+    });
 
     console.log("Importing...");
     console.log(data);
-    const noteList = data?.notes || [];
+    // const noteList = data?.notes || [];
     // const noteList = noteData;
-    console.log(noteList);
+    // console.log(noteList);
     if (loading) return (<div >Loading...</div>);
     if (error) return (<div> Error: {error.message} </div>)
     if (data)
@@ -38,7 +41,8 @@ const Play = () => {
         </ul> */}
         
           <div>
-            <SequencerPanel />
+            <SequencerPanel 
+            trackId = {data.trackByType._id}/>
           </div>
         </div>
           
