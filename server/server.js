@@ -16,7 +16,7 @@ const { ApolloServer } = require("apollo-server-express");
 const { typeDefs, resolvers } = require("./schemas");
 const db = require("./config/connection");
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 const server = new ApolloServer({
   typeDefs,
   resolvers,
@@ -34,20 +34,20 @@ mongoose.connect(process.env.ATLAS_URI, {
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(cors({
-  origin: "http://localhost:3000",
-  credentials: true
-}))
+// app.use(cors({
+//   origin: `${PORT}`,
+//   credentials: true
+// }))
 
 
 app.use(session({
-  secret: process.env.SECRET,
+  secret: "secret",
   resave: true,
   saveUninitialized: true,
 }));
 
 
-app.use(cookieParser(process.env.SECRET));
+app.use(cookieParser("secret"));
 
 
 

@@ -23,5 +23,10 @@ db.once('open', async () => {
 
     }
 
+    const mainSequencer = await Track.create({
+        name:"main",
+        type:"sequencer_main"
+    })
+
     process.exit(0);
 });
