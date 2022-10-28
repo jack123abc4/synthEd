@@ -14,7 +14,7 @@ const login = () => {
         password: loginPassword,
       },
       withCredentials: true,
-      url: "https://synthed.herokuapp.com/login",
+      url: "http://localhost:3000/login",
     }).then((res) => console.log(res));
   };
   return (

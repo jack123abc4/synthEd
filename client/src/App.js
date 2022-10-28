@@ -35,7 +35,7 @@ function App() {
   const user = false;
   return (
     
-    <ApolloProvider  client ={client}>
+    <ApolloProvider  client={client}>
     <Router>
       <>
     <Routes>
