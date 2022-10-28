@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import NoteSquare from './NoteSquare';
 import Grid from '@mui/material/Grid';
 import { useMutation } from '@apollo/client';
@@ -21,20 +21,34 @@ const SequencerPanel = (props) => {
     const [currentlyPlaying, setCurrentlyPlaying] = useState(false);
     const [time, setTime] = useState(0);
     const [startTime, setStartTime] = useState(0);
-    let loop;
+    const loop = useRef(new Tone.Loop((time) => {
+        // triggered every eighth note.
+        // console.log(time)
+        const currentMeasure = measure
+        console.log(currentMeasure,currentMeasure+1)
+        // setTime(time);
+        // const newMeasure = Math.floor(time-startTime)%16
+        setMeasure(currentMeasure+1)
+    }, "8n").start(0))
+
+
+    
+
+
     let timer = null;
     
 
-    useEffect(() => {
-        loop = new Tone.Loop((time) => {
-            // triggered every eighth note.
-            // console.log(time)
-            const currentMeasure = measure
-            setTime(time);
-            const newMeasure = Math.floor(time-startTime)%16
-            setMeasure(newMeasure)
-        }, "8n").start(0);
-    },[]);
+    // useEffect(() => {
+    //     loop = new Tone.Loop((time) => {
+    //         // triggered every eighth note.
+    //         // console.log(time)
+    //         const currentMeasure = measure
+    //         console.log(currentMeasure,currentMeasure+1)
+    //         // setTime(time);
+    //         // const newMeasure = Math.floor(time-startTime)%16
+    //         setMeasure(currentMeasure+1)
+    //     }, "8n").start(0);
+    // },[]);
 
     // useEffect(() => {
     //     Tone.start();
@@ -143,11 +157,13 @@ const SequencerPanel = (props) => {
         console.log(`Clicked! Changed state ${currentlyPlaying} to ${!currentlyPlaying}`);
         setCurrentlyPlaying(!currentlyPlaying);
         if (!currentlyPlaying) {
+            console.log("Started!")
             setStartTime(Tone.now())
             Tone.Transport.start();
             
         }
         else {
+            console.log("Stopped!")
             Tone.Transport.stop();
             
         }
