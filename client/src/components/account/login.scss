@@ -120,6 +120,8 @@ input {
     margin-bottom: 18px;
 }
 
+
+
 .submit {
     width: 250px;
     background: linear-gradient(-45deg, #0FF8E5, white);
@@ -127,12 +129,27 @@ input {
     border-radius: 9px;
     padding: 15px 0px;
     color: black;
+    
 
     &:hover {
         background: linear-gradient(-45deg, #bc00fe, white);
         border: 2px solid #bc00fe;
         color: white;
         transition: 0.3s ease-in-out;
+    }
+}
+
+.wrap {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    position: relative;
+
+    .submit {
+        position: absolute;
     }
 }
 

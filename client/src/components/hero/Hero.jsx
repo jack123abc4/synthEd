@@ -7,6 +7,7 @@ import { HiHashtag } from "react-icons/hi";
 import { SlMusicTone } from "react-icons/sl";
 import { GiMusicalNotes } from "react-icons/gi";
 
+
 const Hero = () => {
   const textRef = useRef();
   useEffect(() => {
@@ -33,7 +34,7 @@ const Hero = () => {
         </div>
       </div>
       <div className="mask">
-        <img className="hero-img" src="assets/thumb.png" />
+        <img className="hero-img" src="assets/thumb.png" alt=''/>
         <div className="left"></div>
       </div>
       <div className="right">
@@ -41,8 +42,7 @@ const Hero = () => {
           <h1>SynthEd.</h1>
           <h3>
             Music to <span ref={textRef}></span>
-          </h3>
-
+          </h3>         
           <div>
             <Link to="/register" className="btn">
               Sign Up
@@ -51,6 +51,7 @@ const Hero = () => {
               Login
             </Link>
           </div>
+
         </div>
       </div>
     </div>

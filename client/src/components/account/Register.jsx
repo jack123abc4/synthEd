@@ -1,12 +1,25 @@
-import React from 'react';
-
+import React, { useState } from "react";
+import "./login.scss";
+import axios from "axios";
+import { Link } from "react-router-dom";
 
 const Register = () => {
-
-
+  const [registerEmail, setRegisterEmail] = useState("");
+  const [registerPassword, setRegisterPassword] = useState("");
+  const register = () => {
+    axios({
+      method: "POST",
+      data: {
+        email: registerEmail,
+        password: registerPassword,
+      },
+      withCredentials: true,
+      url: "http://localhost:3000/register",
+    }).then((res) => console.log(res));
+  };
   return (
     <div className="login">
-      <h1 className="login-title">Choose a Login Method</h1>
+      <h1 className="login-title">Choose a Registration Method</h1>
       <div className="wrapper">
         <div className="left">
           <div className="loginBtn google">
@@ -25,14 +38,26 @@ const Register = () => {
         </div>
 
         <div className="right">
-        <input type="email" placeholder='Email' onChange={e => setLoginEmail(e.target.value)} />
-                <input type="password" placeholder='Password'onChange={e => setLoginPassword(e.target.value)}  />
-                <button className='submit' onClick={register}>Register</button>
-                <Link to='/register'><span>Already registered?</span> Login</Link>
+          <input
+            type="email"
+            placeholder="Email"
+            onChange={(e) => setRegisterEmail(e.target.value)}
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            onChange={(e) => setRegisterPassword(e.target.value)}
+          />
+          <button className="submit" onClick={register}>
+            Register
+          </button>
+          <Link to="/login">
+            <span>Have an account?</span> Login
+          </Link>
+        </div>
+      </div>
     </div>
-    </div>
-    </div>
-  )
-}
+  );
+};
 
-export default Register
+export default Register;
