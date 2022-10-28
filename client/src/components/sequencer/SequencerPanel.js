@@ -26,8 +26,8 @@ const SequencerPanel = (props) => {
         // console.log(time)
         const currentMeasure = measure
         console.log(currentMeasure,currentMeasure+1)
-        // setTime(time);
-        // const newMeasure = Math.floor(time-startTime)%16
+        setTime(time);
+        const newMeasure = Math.floor(time-startTime)%16
         setMeasure(currentMeasure+1)
     }, "8n").start(0))
 

@@ -9,7 +9,8 @@ import { useAuth0 } from '@auth0/auth0-react';
 const Nav = ({user}) => {
    const [click, setClick] = useState(false);
    const handleClick = () => setClick(!click);
-   const { logout, isAuthenticated } = useAuth0();
+   // const { logout, isAuthenticated } = useAuth0();
+   const { logout, isAuthenticated } = useState(null);
   return (
     <div className='nav'>
         <Link to='/'>
