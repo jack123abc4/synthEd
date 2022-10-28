@@ -21,6 +21,7 @@
     "emailjs-com": "^3.2.0",
     "graphql": "^15.4.0",
     "ityped": "^1.0.3",
+    "passport-google-oauth20": "^2.0.0",
     "react": "^18.2.0",
     "react-color": "^2.19.3",
     "react-dom": "^18.2.0",
