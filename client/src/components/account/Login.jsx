@@ -4,13 +4,13 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 
 const Login = () => {
-  const [loginEmail, setLoginEmail] = useState("");
+  const [loginUsername, setLoginUsername] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
   const login = () => {
     axios({
       method: "POST",
       data: {
-        email: loginEmail,
+        username: loginUsername,
         password: loginPassword,
       },
       withCredentials: true,
@@ -38,22 +38,25 @@ const Login = () => {
         </div>
 
         <div className="right">
-          <input
-            type="email"
-            placeholder="Email"
-            onChange={(e) => setLoginEmail(e.target.value)}
-          />
-          <input
-            type="password"
-            placeholder="Password"
-            onChange={(e) => setLoginPassword(e.target.value)}
-          />
-          <button className="submit" onClick={login}>
-            Login
-          </button>
-          <Link to="/register">
-            <span>New around here?</span> Register
-          </Link>
+
+            <input
+              type="text"
+              name="username"
+              placeholder="Username"
+              onChange={(e) => setLoginUsername(e.target.value)}
+            />
+            <input
+              type="password"
+              name="password"
+              placeholder="Password"
+              onChange={(e) => setLoginPassword(e.target.value)}
+            />
+            <button type="submit" className="submit" onClick={login}>
+              Login
+            </button>
+            <Link to="/register">
+              <span>New around here?</span> Register
+            </Link>
         </div>
       </div>
     </div>
