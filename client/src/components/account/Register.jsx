@@ -3,23 +3,23 @@ import "./login.scss";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-const Login = () => {
-  const [loginUsername, setLoginUsername] = useState("");
-  const [loginPassword, setLoginPassword] = useState("");
-  const login = () => {
+const Register = () => {
+  const [registerUsername, setRegisterUsername] = useState("");
+  const [registerPassword, setRegisterPassword] = useState("");
+  const register = () => {
     axios({
       method: "POST",
       data: {
-        username: loginUsername,
-        password: loginPassword,
+        username: registerUsername,
+        password: registerPassword,
       },
       withCredentials: true,
-      url: "http://localhost:3000/login",
+      url: "http://localhost:3000/register",
     }).then((res) => console.log(res));
   };
   return (
     <div className="login">
-      <h1 className="login-title">Choose a Login Method</h1>
+      <h1 className="login-title">Choose a Registration Method</h1>
       <div className="wrapper">
         <div className="left">
           <div className="loginBtn google">
@@ -38,29 +38,29 @@ const Login = () => {
         </div>
 
         <div className="right">
-
             <input
               type="text"
               name="username"
               placeholder="Username"
-              onChange={(e) => setLoginUsername(e.target.value)}
+              onChange={(e) => setRegisterUsername(e.target.value)}
             />
             <input
               type="password"
               name="password"
               placeholder="Password"
-              onChange={(e) => setLoginPassword(e.target.value)}
+              onChange={(e) => setRegisterPassword(e.target.value)}
             />
-            <button type="submit" className="submit" onClick={login}>
-              Login
+            <button type="submit" className="submit" onClick={register}>
+              Register
             </button>
-            <Link to="/register">
-              <span>New around here?</span> Register
+            <Link to="/login">
+              <span>Have an account?</span> Login
             </Link>
+
         </div>
       </div>
     </div>
   );
 };
 
-export default Login;
+export default Register;

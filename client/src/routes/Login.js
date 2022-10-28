@@ -9,6 +9,7 @@ const Login = () => {
       <Nav />
       <div className="section">
         <LoginPage />
+
       </div>
     </div>
   );
