@@ -47,7 +47,7 @@ export default function Story() {
                   <div className="imgContainer">
                     <img src={d.icon} alt="" />
                   </div>
-                  <h2>{d.title}</h2>
+                  <h2 style={({color: 'black'})}>{d.title}</h2>
                   <p>{d.desc}</p>
                 </div>
               </div>

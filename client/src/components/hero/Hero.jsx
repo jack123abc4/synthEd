@@ -42,9 +42,9 @@ const Hero = () => {
           <h1>SynthEd.</h1>
           <h3>
             Music to <span ref={textRef}></span>
-          </h3>         
-          <div>
-            <Link to="/register" className="btn">
+          </h3>
+          <div className="heroBtns">
+            <Link to="/contact" className="btn">
               Sign Up
             </Link>
             <Link to="/login" className="btn btn-light">

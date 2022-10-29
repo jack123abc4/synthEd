@@ -47,10 +47,11 @@
     text-align: center;
 }
 
-.content h3 span {
+.content .wrapper span {
     color: rgb(15, 248, 229);
     text-align: center;
 }
+
 .content h3 .ityped-cursor {
     animation: blink 1s infinite;
 }
@@ -131,8 +132,22 @@
   }
 
   @media screen and (max-width: 640px) {
-    .content h3 {
+    .music-notes {
+      height: 20px;
+    }
+
+    .content h3 .ityped-cursor {
+      display: none;
+  } 
+    .content h3, .heroBtns {
         font-size: 3rem;
+        display: flex;
+        flex-direction: column;
 
     }
+
   }
+
+
+    
+  

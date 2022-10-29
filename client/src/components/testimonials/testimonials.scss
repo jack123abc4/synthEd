@@ -8,7 +8,6 @@
         height: 100vh;
         position: relative;
 
-        scroll-snap-type: y mandatory;
 
     }
      
@@ -62,6 +61,10 @@
 	 padding: 10px;
 	 border-radius: 10px;
 	 background-color: #faf4f5;
+	 color: black;
+	 display: flex;
+	 align-items: center;
+	 justify-content: center;
 }
  .testimonials .container .card .bottom {
 	 display: flex;
