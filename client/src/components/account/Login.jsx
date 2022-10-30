@@ -6,7 +6,13 @@ import { Link } from "react-router-dom";
 const Login = () => {
   const googleLogin = () => {
     window.open("http://localhost:3000/auth/google", "_self")
-  }
+  };
+  const facebookLogin = () => {
+    window.open("http://localhost:3000/auth/facebook", "_self")
+  };
+  const twitterLogin = () => {
+    window.open("http://localhost:3000/auth/twitter", "_self")
+  };
   const [loginUsername, setLoginUsername] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
   const login = () => {
@@ -28,10 +34,10 @@ const Login = () => {
           <div className="loginBtn google" onClick={googleLogin}>
             <img src="assets/google.png" alt="" className="icon" /> Google
           </div>
-          <div className="loginBtn">
+          <div className="loginBtn" onClick={facebookLogin}>
             <img src="assets/facebook.png" alt="" className="icon" /> Facebook
           </div>
-          <div className="loginBtn">
+          <div className="loginBtn" onClick={twitterLogin}>
             <img src="assets/twitterlogo.png" alt="" className="icon" /> Twitter
           </div>
         </div>
