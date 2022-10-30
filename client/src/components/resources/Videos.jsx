@@ -1,37 +1,78 @@
-import React, { useState } from 'react';
-import './videos.scss'
-import { Videos } from './videoData';
-import { BiSearchAlt } from 'react-icons/bi';
+import { useEffect, useState } from "react";
+import VideoList from "./VideoList";
+import "./videos.scss";
+import {
+  musicTheory,
+  pianoBasics,
+  beginnerLessons,
+  playAlong
+} from "../../data";
 
+export default function Videos() {
+  const [selected, setSelected] = useState("featured");
+  const [data, setData] = useState([]);
+  const list = [
+    {
+      id: "theory",
+      title: "Music Theory",
+    },
+    {
+      id: "basics",
+      title: "Piano Basics",
+    },
+    {
+      id: "lessons",
+      title: "Lessons",
+    },
+    {
+      id: "play",
+      title: "Play Along",
+    },
+  ];
 
-const VideoSearch = () => {
-  const [filterData, setFilterData] = useState =("")
+  useEffect(() => {
+    switch (selected) {
+      case "theory":
+        setData(musicTheory);
+        break;
+      case "basics":
+        setData(pianoBasics);
+        break;
+      case "lessons":
+        setData(beginnerLessons);
+        break;
+      case "play":
+        setData(playAlong);
+        break;
+      default:
+        setData(musicTheory);
+    }
+  }, [selected]);
+
   return (
-    <div className='videos'>
+    <div className="videos" id="videos">
       <h1>Videos</h1>
-      <div className="search-bar">
-        <div className="search-input">
-          <input type="text" placeholder='Search music education videos...'  onChange={e => setFilterData(e.target.value)} />
-          <div className='search-icon'><BiSearchAlt color="black" size={28} /></div>
-        </div>
-        {(() => {
-          if (filterData.length != 0) {
-            return(
-        <ul className='video-list'>
-          {Videos.map((video) => (
-            <li><a className='video-result' href={video.link} target="_blank"><p>{video.title}</p></a></li>
-          ))}
-          </ul>
-          )
-          }
-        })}
-              
+      <ul>
+        {list.map((item) => (
+          <VideoList
+            title={item.title}
+            active={selected === item.id}
+            setSelected={setSelected}
+            id={item.id}
+          />
+        ))}
+      </ul>
+      <div className="container">
+        {data.map((d) => (
+          <div className="item">
+            <img
+              src={d.img}
+              alt=""
+            />
+            <h3>{d.title}</h3>
           </div>
-          <div className="book"><img src='assets/knowledge.gif' alt='book'></img></div>
-        
+        ))}
       </div>
-
-  )
+    </div>
+  );
 }
-
-export default VideoSearch

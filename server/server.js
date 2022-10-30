@@ -7,10 +7,11 @@ const cookieParser = require("cookie-parser");
 const bcrypt = require("bcryptjs");
 const session = require("express-session");
 require("dotenv").config();
-const User = require("./models/User");
+const User = require("./models/UserOld");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const TwitterStrategy = require("passport-twitter").Strategy;
 const GitHubStrategy = require("passport-github2").Strategy;
+
 // Import the ApolloServer class
 const { ApolloServer } = require("apollo-server-express");
 
@@ -27,7 +28,7 @@ const server = new ApolloServer({
 const app = express();
 
 mongoose.connect(
-  process.env.ATLAS_URI,
+  process.env.MONGODB_URI,
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -68,9 +69,6 @@ passport.deserializeUser((user, done) => {
   return done(null, user);
 });
 
-//First Name
-//Last Name
-//ID of oauth system
 
 passport.use(
   new GoogleStrategy(
@@ -82,6 +80,19 @@ passport.use(
     function (accessToken, refreshToken, profile, cb) {
       console.log(profile);
       cb(null, profile);
+      User.findOne({googleId: profile.id}).then((currentUser) => {
+        if(currentUser){
+          console.log('user is', currentUser)
+        } else {
+          new User({
+            username: profile.displayName,
+            googleId: profile.id
+          }).save().then((newUser) => {
+            console.log('New User Created' + newUser)
+          })
+        }
+      })
+
     }
   )
 );
@@ -108,6 +119,7 @@ passport.use(
       callbackURL: "/auth/github/callback",
     },
     function (accessToken, refreshToken, profile, cb) {
+
       console.log(profile);
       cb(null, profile);
     }
@@ -152,6 +164,13 @@ app.get(
     res.redirect("https://synthed.herokuapp.com/");
   }
 );
+
+app.get('/logout', (req, res) => {
+  if (req.user) {
+    req.logout();
+    res.send("Successfully logged out")
+  }
+})
 
 app.post("/login", (req, res, next) => {
   passport.authenticate("local", (err, user, info) => {
