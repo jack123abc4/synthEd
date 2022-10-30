@@ -1,6 +1,6 @@
 import React from 'react';
 import "./Piano.css";
-import Nav from '../components/nav/Nav';
+
 import {
   playC4,
   playDb4,
@@ -23,7 +23,7 @@ window.addEventListener('keydown', playNote);
 const Piano = () => {
   return (
     <div className="pianoKeys">
-          <Nav />
+
       <div className="piano">
         <div className="white-key" onClick={playC4}>A</div>
 

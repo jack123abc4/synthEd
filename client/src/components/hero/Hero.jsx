@@ -1,22 +1,12 @@
 import "./hero.css";
 import React, { useEffect, useRef } from "react";
-import { init } from "ityped";
 import { Link } from "react-router-dom";
 import { BsMusicNote, BsMusicNoteBeamed } from "react-icons/bs";
 import { HiHashtag } from "react-icons/hi";
 import { SlMusicTone } from "react-icons/sl";
 import { GiMusicalNotes } from "react-icons/gi";
 
-
 const Hero = () => {
-  // const textRef = useRef();
-  // useEffect(() => {
-  //   init(textRef.current, {
-  //     showCursor: true,
-  //     backDelay: 1500,
-  //     strings: ["Learn", "Create", "Play", "Share"],
-  //   });
-  // }, []);
   return (
     <div className="hero">
       <div class="music-notes">
@@ -34,25 +24,24 @@ const Hero = () => {
         </div>
       </div>
       <div className="mask">
-        <img className="hero-img" src="assets/thumb.png" alt=''/>
+        <img className="hero-img" src="assets/thumb.png" alt="" />
         <div className="left"></div>
       </div>
       <div className="right">
         <div className="content">
           <h1>SynthEd.</h1>
-          
+
           <h3>
-            Music to 
+            Music to
             <div className="word-scroll">
-            <div className="hero-wrapper">
-              <div className="hero-item">Learn</div>
-              <div className="hero-item">Create</div>
-              <div className="hero-item">Play</div>
-              <div className="hero-item">Share</div>
+              <div className="hero-wrapper">
+                <div className="hero-item">Learn</div>
+                <div className="hero-item">Create</div>
+                <div className="hero-item">Play</div>
+                <div className="hero-item">Share</div>
+              </div>
             </div>
-            </div>
-            </h3>
-          
+          </h3>
 
           <div className="heroBtns">
             <Link to="/contact" className="btn">
@@ -62,7 +51,6 @@ const Hero = () => {
               Login
             </Link>
           </div>
-
         </div>
       </div>
     </div>

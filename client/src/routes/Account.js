@@ -7,9 +7,8 @@ import Login from '../components/account/Login';
 
 const Account = () => {
   return <div className='account-nav'>
-    <Nav />
+
     <div className='section'>
-      <Login />
 
       </div>
       </div>

@@ -4,6 +4,9 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 
 const Login = () => {
+  const googleLogin = () => {
+    window.open("http://localhost:3000/auth/google", "_self")
+  }
   const [loginUsername, setLoginUsername] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
   const login = () => {
@@ -22,7 +25,7 @@ const Login = () => {
       <h1 className="login-title">Choose a Login Method</h1>
       <div className="wrapper">
         <div className="left">
-          <div className="loginBtn google">
+          <div className="loginBtn google" onClick={googleLogin}>
             <img src="assets/google.png" alt="" className="icon" /> Google
           </div>
           <div className="loginBtn">

@@ -8,7 +8,7 @@ import Contact from '../components/contact/Contact';
 
 const About = () => {
   return <div className='about-nav'>
-    <Nav />
+
     <AboutHero />
     <div className='section'>
       <Story />

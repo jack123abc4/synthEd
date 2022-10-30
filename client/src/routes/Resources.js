@@ -6,7 +6,7 @@ import VideoSearch from '../components/resources/Videos';
 
 const Resources = () => {
   return <div className='resource-page'>
-    <Nav />
+
     <Resource />
     <Links />
     <VideoSearch />

@@ -16,7 +16,7 @@ const { ApolloServer } = require("apollo-server-express");
 const { typeDefs, resolvers } = require("./schemas");
 const db = require("./config/connection");
 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3000;
 const server = new ApolloServer({
   typeDefs,
   resolvers,
@@ -34,24 +34,82 @@ mongoose.connect(process.env.ATLAS_URI, {
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-// app.use(cors({
-//   origin: `${PORT}`,
-//   credentials: true
-// }))
+app.use(cors({
+    origin: {PORT},
+    methods: "GET, POST, PUT, DELETE",
+  credentials: true
+}))
 
 
 app.use(session({
-  secret: "secret",
-  resave: true,
-  saveUninitialized: true,
-}));
-
+  secret: process.env.SECRET,
+    resave: true,
+    saveUninitialized: true,
+  })
+);
 
 app.use(cookieParser("secret"));
+app.use(passport.initialize());
+app.use(passport.session());
+// require('./passportConfig')(passport);
+
+passport.serializeUser((user, done) => {
+  return done(null, user);
+});
+
+passport.deserializeUser((user, done) => {
+  return done(null, user);
+});
+
+passport.use(new GoogleStrategy({
+  clientID: process.env.GOOGLE_CLIENT_ID,
+  clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+  callbackURL: "/auth/google/callback"
+},
+function(accessToken, refreshToken, profile, cb) {
+  console.log(profile);
+  cb(null, profile);
+}));
+
+app.get('/auth/google',
+  passport.authenticate('google', { scope: ['profile'] }));
+
+app.get('/auth/google/callback', 
+  passport.authenticate('google', { failureRedirect: '/login' }),
+  function(req, res) {
+    // Successful authentication, redirect home.
+    res.redirect('/');
+  });
 
 
+app.post("/login", (req, res, next) => {
+  passport.authenticate("local", (err, user, info) => {
+    if (err) throw err;
+      if (!user) res.send("No user with that email");
+      else {
+        req.login(user, err => {
+          if (err) throw err;
+          res.send('Success!')
+        })
+      }
+  })(req, res, next)
 
-
+});
+app.post("/register", (req, res) => {
+  User.findOne({email: req.body.email}, async (err, doc) => {
+    if (err) throw err;
+    if (doc) res.send("User already registered");
+    if (!doc) {
+      const hashedPassword = await bcrypt.hash(req.body.password, 10);
+      const newUser = new User({
+        email: req.body.email,
+        password: hashedPassword
+      });
+      await newUser.save();
+      res.send("User created")
+    }
+  })
+});
 
 // Create a new instance of an Apollo server with the GraphQL schema
 const startApolloServer = async (typeDefs, resolvers) => {
@@ -61,35 +119,6 @@ const startApolloServer = async (typeDefs, resolvers) => {
   if (process.env.NODE_ENV === "production") {
     app.use(express.static("client/build"));
   }
-
-  app.post("/login", (req, res, next) => {
-    passport.authenticate("local", (err, user, info) => {
-      if (err) throw err;
-        if (!user) res.send("No user with that username");
-        else {
-          req.login(user, err => {
-            if (err) throw err;
-            res.send('Success!')
-          })
-        }
-    })(req, res, next)
-  
-  });
-  app.post("/register", (req, res) => {
-    User.findOne({username: req.body.username}, async (err, doc) => {
-      if (err) throw err;
-      if (doc) res.send("User already registered");
-      if (!doc) {
-        const hashedPassword = await bcrypt.hash(req.body.password, 10);
-        const newUser = new User({
-          user: req.body.user,
-          password: hashedPassword
-        });
-        await newUser.save();
-        res.send("User created")
-      }
-    })
-  });
 
   db.once("open", () => {
     app.listen(PORT, () => {

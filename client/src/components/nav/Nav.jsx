@@ -33,13 +33,13 @@ const Nav = ({user}) => {
             <li>
                <Link to='/about'>About Us</Link> 
             </li>
-            {isAuthenticated ?
+{user ? (
             <li>
-            <Link to='/login' onClick={() => logout()}>Logout</Link> 
-            </li> : <li>
+            <Link to='/login' onClick={() => logout()}>Welcome, User! Logout</Link> 
+            </li> ) : ( <li>
             <Link to='/login'>Login</Link> 
-            </li>
-            }
+            </li>)}
+
         </ul>
 
          <div className='hamburger' onClick={handleClick}>

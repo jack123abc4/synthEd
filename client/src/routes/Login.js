@@ -6,7 +6,6 @@ import LoginPage from '../components/account/Login';
 const Login = () => {
   return (
     <div className="login-nav">
-      <Nav />
       <div className="section">
         <LoginPage />
 
