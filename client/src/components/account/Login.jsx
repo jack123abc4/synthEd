@@ -7,8 +7,8 @@ const Login = () => {
   const googleLogin = () => {
     window.open("http://localhost:3000/auth/google", "_self")
   };
-  const facebookLogin = () => {
-    window.open("http://localhost:3000/auth/facebook", "_self")
+  const githubLogin = () => {
+    window.open("http://localhost:3000/auth/github", "_self")
   };
   const twitterLogin = () => {
     window.open("http://localhost:3000/auth/twitter", "_self")
@@ -34,8 +34,8 @@ const Login = () => {
           <div className="loginBtn google" onClick={googleLogin}>
             <img src="assets/google.png" alt="" className="icon" /> Google
           </div>
-          <div className="loginBtn" onClick={facebookLogin}>
-            <img src="assets/facebook.png" alt="" className="icon" /> Facebook
+          <div className="loginBtn" onClick={githubLogin}>
+            <img src="assets/github.png" alt="" className="icon" /> Github
           </div>
           <div className="loginBtn" onClick={twitterLogin}>
             <img src="assets/twitterlogo.png" alt="" className="icon" /> Twitter

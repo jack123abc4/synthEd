@@ -10,6 +10,7 @@ require("dotenv").config();
 const User = require("./models/User");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const TwitterStrategy = require("passport-twitter").Strategy;
+const GitHubStrategy = require("passport-github2").Strategy;
 // Import the ApolloServer class
 const { ApolloServer } = require("apollo-server-express");
 
@@ -99,6 +100,20 @@ passport.use(
   )
 );
 
+passport.use(
+  new GitHubStrategy(
+    {
+      clientID: process.env.GITHUB_CLIENT_ID,
+      clientSecret: process.env.GITHUB_CLIENT_SECRET,
+      callbackURL: "/auth/github/callback",
+    },
+    function (accessToken, refreshToken, profile, cb) {
+      console.log(profile);
+      cb(null, profile);
+    }
+  )
+);
+
 app.get(
   "/auth/google",
   passport.authenticate("google", { scope: ["profile"] })
@@ -109,19 +124,34 @@ app.get(
   passport.authenticate("google", { failureRedirect: "/login" }),
   function (req, res) {
     // Successful authentication, redirect home.
-    res.redirect("/");
+    res.redirect("https://synthed.herokuapp.com/");
   }
 );
 
-app.get('/auth/twitter',
-  passport.authenticate('twitter'));
+app.get("/auth/twitter", passport.authenticate("twitter"));
 
-app.get('/auth/twitter/callback', 
-  passport.authenticate('twitter', { failureRedirect: '/login' }),
-  function(req, res) {
+app.get(
+  "/auth/twitter/callback",
+  passport.authenticate("twitter", { failureRedirect: "/login" }),
+  function (req, res) {
     // Successful authentication, redirect home.
-    res.redirect('/');
-  });
+    res.redirect("https://synthed.herokuapp.com/");
+  }
+);
+
+app.get(
+  "/auth/github",
+  passport.authenticate("github", { scope: ["user:email"] })
+);
+
+app.get(
+  "/auth/github/callback",
+  passport.authenticate("github", { failureRedirect: "/login" }),
+  function (req, res) {
+    // Successful authentication, redirect home.
+    res.redirect("https://synthed.herokuapp.com/");
+  }
+);
 
 app.post("/login", (req, res, next) => {
   passport.authenticate("local", (err, user, info) => {
