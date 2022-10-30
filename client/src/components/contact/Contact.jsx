@@ -8,7 +8,7 @@ export default function Contact() {
   const [done, setDone] =useState(false)
   const handleSubmit = (e) => {
     e.preventDefault();
-    emailjs.sendForm('service_oel3aem', 'template_ge6pxgy', formRef.current, 'uOEZu1fDeZRQbIEq6')
+    emailjs.sendForm('service_oel3aem', 'template_rz0wwlw', formRef.current, 'uOEZu1fDeZRQbIEq6')
     .then((result) => {
         console.log(result.text);
         e.target.reset()
@@ -40,9 +40,9 @@ export default function Contact() {
           <b>What's your tune?</b> Contact us below with any questions, comments, or just to say, "What's up?"!
         </p>
         <form ref={formRef} onSubmit={handleSubmit}>
-          <input type="text" placeholder="Name..." name="name" />
-          <input type="text" placeholder="Email..." name="email" />
-          <input type="text" placeholder="Subject..." name="subject" />
+          <input type="text" placeholder="Name..." name="user_name" />
+          <input type="text" placeholder="Email..." name="user_email" />
+          <input type="text" placeholder="Subject..." name="user_subject" />
           <textarea rows="10" placeholder="Type your message here..." name="message" />
           <button type="submit">Submit</button>
           <div className="thanks">

@@ -40,6 +40,7 @@ const Hero = () => {
       <div className="right">
         <div className="content">
           <h1>SynthEd.</h1>
+          
           <h3>
             Music to <span ref={textRef}></span>
           </h3>

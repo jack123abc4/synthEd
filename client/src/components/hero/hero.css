@@ -47,11 +47,25 @@
     text-align: center;
 }
 
-.content .wrapper span {
+.content span {
     color: rgb(15, 248, 229);
     text-align: center;
+    animation: move 10s ease-in-out infinite alternate;
 }
-
+@keyframes move {
+  25% {
+    transform: translateY(-50px);
+  }
+  50% {
+    transform: translateY(-100px);
+  }
+  75% {
+    transform: translateY(-150px);
+  }
+  100% {
+    transform: translateY(-200px);
+  }
+}
 .content h3 .ityped-cursor {
     animation: blink 1s infinite;
 }
