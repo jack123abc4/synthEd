@@ -33,6 +33,14 @@
     cursor: pointer;
 }
 
+@media screen and (max-width: 400px) {
+    
+    .hamburger {
+        display: initial;
+    }
+    
+}
+
 @media screen and (max-width: 1040px) {
     .nav-menu {
         flex-direction: column;

@@ -9,14 +9,14 @@ import { GiMusicalNotes } from "react-icons/gi";
 
 
 const Hero = () => {
-  const textRef = useRef();
-  useEffect(() => {
-    init(textRef.current, {
-      showCursor: true,
-      backDelay: 1500,
-      strings: ["Learn", "Create", "Play", "Share"],
-    });
-  }, []);
+  // const textRef = useRef();
+  // useEffect(() => {
+  //   init(textRef.current, {
+  //     showCursor: true,
+  //     backDelay: 1500,
+  //     strings: ["Learn", "Create", "Play", "Share"],
+  //   });
+  // }, []);
   return (
     <div className="hero">
       <div class="music-notes">
@@ -42,8 +42,18 @@ const Hero = () => {
           <h1>SynthEd.</h1>
           
           <h3>
-            Music to <span ref={textRef}></span>
-          </h3>
+            Music to 
+            <div className="word-scroll">
+            <div className="hero-wrapper">
+              <div className="hero-item">Learn</div>
+              <div className="hero-item">Create</div>
+              <div className="hero-item">Play</div>
+              <div className="hero-item">Share</div>
+            </div>
+            </div>
+            </h3>
+          
+
           <div className="heroBtns">
             <Link to="/contact" className="btn">
               Sign Up
