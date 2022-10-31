@@ -5,13 +5,13 @@ import { Link } from "react-router-dom";
 
 const Register = () => {
   const googleLogin = () => {
-    window.open("http://localhost:3000/auth/google", "_self")
+    window.open("https://synthed.herokuapp.com/auth/google", "_self")
   };
   const githubLogin = () => {
-    window.open("http://localhost:3000/auth/github", "_self")
+    window.open("https://synthed.herokuapp.com/auth/github", "_self")
   };
   const twitterLogin = () => {
-    window.open("http://localhost:3000/auth/twitter", "_self")
+    window.open("https://synthed.herokuapp.com/auth/twitter", "_self")
   };
   const [registerUsername, setRegisterUsername] = useState("");
   const [registerPassword, setRegisterPassword] = useState("");
@@ -23,7 +23,7 @@ const Register = () => {
         password: registerPassword,
       },
       withCredentials: true,
-      url: "http://localhost:3000/register",
+      url: "https://synthed.herokuapp.com/register",
     }).then((res) => console.log(res));
   };
   return (

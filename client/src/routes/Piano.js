@@ -104,7 +104,8 @@ const Piano = () => {
     return () => {
       window.removeEventListener('keydown', );
     };
-  }, [])
+  }, []);
+
 
   return (
     <div className="pianoKeys">
