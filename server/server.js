@@ -6,6 +6,8 @@ const passportLocal = require("passport-local").Strategy;
 const cookieParser = require("cookie-parser");
 const bcrypt = require("bcryptjs");
 const session = require("express-session");
+const cookieSession = require('cookie-session');
+const authRoute = require('./auth/auth')
 require("dotenv").config();
 const User = require("./models/User");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
@@ -51,7 +53,7 @@ app.use(
 app.set("trust proxy", 1);
 
 app.use(
-  session({
+  cookieSession({
     secret: process.env.SECRET,
     resave: true,
     saveUninitialized: true,
@@ -209,6 +211,10 @@ app.get(
   }
 );
 
+app.get("/", (req, res) => {
+  res.send("Hello World")
+})
+
 app.get('/getuser', (req, res) => {
   res.send(req.user);
 })
@@ -216,7 +222,7 @@ app.get('/getuser', (req, res) => {
 app.get("/logout", (req, res) => {
   if (req.user) {
     req.logout();
-    res.send("done");
+    res.send("Successfully logged out");
   }
 });
 
@@ -248,6 +254,7 @@ app.post("/register", (req, res) => {
   });
 });
 
+app.use("/auth", authRoute);
 // Create a new instance of an Apollo server with the GraphQL schema
 const startApolloServer = async (typeDefs, resolvers) => {
   await server.start();

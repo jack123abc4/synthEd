@@ -34,19 +34,19 @@ const client = new ApolloClient({
 
 
 function App() {
-
+const user = false;
   return (
     
     <ApolloProvider  client={client}>
     <Router>
       <>
-      <Nav />
+      <Nav user={user} />
     <Routes>
       <Route path='/' element={<Home />} />
       <Route path='/piano' element={<Piano />} />
       <Route path='/resources' element={<Resources />} />
-      <Route path='/account' element={<Account />}/>
-      <Route path='/login' element={<Login />} />
+      <Route path='/account' element={user ? <Account /> : <Navigate to="/login" />} />
+      <Route path='/login' element={user ? <Navigate to='/account' /> : <Login />} />
       <Route path='/register' element={<Register />} />
       <Route path='/about' element={<About />} />
       <Route path='/play' element={<Play />} />
