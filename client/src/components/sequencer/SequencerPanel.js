@@ -21,9 +21,9 @@ const SequencerPanel = (props) => {
     const [currentlyPlaying, setCurrentlyPlaying] = useState(false);
     const [time, setTime] = useState(0);
     const [startTime, setStartTime] = useState(0);
-    // const { loading, error, data, refetch } = useQuery(
-    //     QUERY_ACTIVE_NOTES_BY_TRACK, {
-    //     variables: {position:measure}})
+    const { loading, error, data, refetch } = useQuery(
+        QUERY_ACTIVE_NOTES_BY_TRACK, {
+        variables: {_id: props._id, position:measure}})
     // const [nextNotes, setNextNotes] = useQuery(
     //     QUERY_ACTIVE_NOTES_BY_TRACK, {
     //     variables: {position:nextMeasure}});
@@ -40,7 +40,8 @@ const SequencerPanel = (props) => {
     setMeasure(nextMeasure);
     console.log(startTime,currentTime)
     
-    // console.log(await refetch({}))
+    console.log(await refetch({}))
+    console.log({data});
     
     console.log("tick",nextMeasure);
   };
