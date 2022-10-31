@@ -28,3 +28,12 @@ export const ADD_NOTE_TO_TRACK = gql`
         }
     }
 `
+export const TOGGLE_NOTE = gql`
+  
+  mutation toggleNote($_id: String) {
+    toggleNote(noteId: $_id) {
+        _id
+        active
+    }
+}
+`;

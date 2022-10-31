@@ -25,6 +25,9 @@ const resolvers = {
     trackByType: async(parent, {type}) => {
       const params = type ? { type } : {};
       return await Track.findOne(params);
+    },
+    activeNotesByTrack: async(parent, {_id, active, position}) => {
+      return await Note.find({trackId: _id, active, position})
     }
 
   },
@@ -44,6 +47,13 @@ const resolvers = {
     },
     createTrack: async (parent, {trackType}) => {
       return await Track.create({type: trackType})
+    },
+    toggleNote: async (parent, {noteId}) => {
+      const note = await Note.find({_id:noteId});
+      const activeState = !note.active
+      console.log(note,activeState);
+
+      return await Note.findOneAndUpdate({_id: noteId}, {active:activeState},{new:true})
     }
   }
 };

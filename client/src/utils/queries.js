@@ -46,6 +46,22 @@ export const QUERY_NOTES_BY_TRACK = gql`
   }
 `;
 
+export const QUERY_ACTIVE_NOTES_BY_TRACK = gql`
+  query activeNotesByTrack($_id: String, $position: Int) { 
+    tracks(_id: $_id) {
+      notes(active: true, position:$position) {
+        freq
+        type
+        gain
+        decay
+        position
+        length
+        name
+      }
+    }
+  }
+`;
+
 export const QUERY_NOTE_BY_ID = gql`
   query getNoteById($_id: String) {
     note(_id: $_id) {
