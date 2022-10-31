@@ -12,7 +12,7 @@ const Nav = ({user}) => {
    const logout = () => {
       axios.get("https://synthed.herokuapp.com/auth/logout").then(res => {
          if (res.data) {
-            window.location.href = "/"
+            window.location.href = "/login"
          }
       })
    }
@@ -44,8 +44,7 @@ const Nav = ({user}) => {
             <li>
             <Link to='/login'>Login</Link> 
             </li>
-            <li>
-            <Link to='/login' onClick={logout}>Logout</Link> 
+            <li onClick={logout}>Logout
             </li> 
 
 

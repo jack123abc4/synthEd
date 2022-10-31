@@ -11,6 +11,11 @@
     background-color: black;
 }
 
+.nav h1:hover {
+    cursor: pointer;
+}
+
+
 
 .nav-menu {
     display: flex;
