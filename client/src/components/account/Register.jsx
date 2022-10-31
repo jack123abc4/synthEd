@@ -30,15 +30,6 @@ const Register = () => {
         console.log(err);
       }
     )
-  //   axios({
-  //     data: {
-  //       username: registerUsername,
-  //       email: registerEmail,
-  //       password: registerPassword,
-  //     },
-  //     withCredentials: true,
-  //     url: "https://synthed.herokuapp.com/register",
-  //   }).then((res) => console.log(res));
   };
   return (
     <div className="login">

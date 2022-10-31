@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './index.scss';
 import Home from './routes/Home';
 import About from './routes/About';
@@ -34,7 +34,32 @@ const client = new ApolloClient({
 
 
 function App() {
+  const [user, setUser] = useState(null);
 
+  useEffect(() => {
+  const getUser = () => {
+    fetch("https://synthed.herokuapp.com/auth/login/success", {
+      method: "GET",
+      credentials: "include",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Credentials": true,
+      },
+    })
+      .then((response) => {
+        if (response.status === 200) return response.json();
+        throw new Error("Authentication has failed!");
+      })
+      .then((resObject) => {
+        setUser(resObject.user);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+  getUser();
+}, []);
   return (
     
     <ApolloProvider  client={client}>
@@ -45,8 +70,8 @@ function App() {
       <Route path='/' element={<Home />} />
       <Route path='/piano' element={<Piano />} />
       <Route path='/resources' element={<Resources />} />
-      <Route path='/account' element={<Account />}/>
-      <Route path='/login' element={<Login />} />
+      <Route path='/account' element={user ? <Account /> : <Navigate to='/login' />} />
+      <Route path='/login' element={user ? <Navigate to='/account'/> : <Login />} />
       <Route path='/register' element={<Register />} />
       <Route path='/about' element={<About />} />
       <Route path='/play' element={<Play />} />

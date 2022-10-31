@@ -58,48 +58,53 @@ app.use(
     cookie: {
       sameSite: "none",
       secure: true,
-      maxAge: 1000 * 60 * 60 * 24 * 7
-    }
+      maxAge: 1000 * 60 * 60 * 24 * 7,
+    },
   })
 );
 
 app.use(cookieParser("secret"));
 app.use(passport.initialize());
 app.use(passport.session());
-require('./passportConfig')(passport);
+require("./passportConfig")(passport);
 
 passport.serializeUser((user, done) => {
-  return done(null, user);
+  done(null, user.id);
 });
 
-passport.deserializeUser((user, done) => {
-  return done(null, user);
+passport.deserializeUser((id, done) => {
+  User.findById(id).then((user) => {
+    done(null, user.id);
+  });
 });
-
 
 passport.use(
   new GoogleStrategy(
     {
-      clientID: "865152093668-p1pbgc18oe0fealqa4nomn17ut5t9925.apps.googleusercontent.com",
+      clientID:
+        "865152093668-p1pbgc18oe0fealqa4nomn17ut5t9925.apps.googleusercontent.com",
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
       callbackURL: "/auth/google/callback",
     },
     function (accessToken, refreshToken, profile, cb) {
       console.log(profile);
       cb(null, profile);
-      User.findOne({googleId: profile.id}).then((currentUser) => {
-        if(currentUser){
-          console.log('user is', currentUser)
+      User.findOne({ googleId: profile.id }).then((currentUser) => {
+        if (currentUser) {
+          console.log("user is", currentUser);
+          done(null, currentUser);
         } else {
           new User({
             username: profile.displayName,
-            googleId: profile.id
-          }).save().then((newUser) => {
-            console.log('New User Created' + newUser)
+            googleId: profile.id,
           })
+            .save()
+            .then((newUser) => {
+              console.log("New User Created" + newUser);
+              done(null, newUser);
+            });
         }
-      })
-
+      });
     }
   )
 );
@@ -114,19 +119,22 @@ passport.use(
     function (accessToken, refreshToken, profile, cb) {
       console.log(profile);
       cb(null, profile);
-      User.findOne({twitterId: profile.id}).then((currentUser) => {
-        if(currentUser){
-          console.log('user is', currentUser)
+      User.findOne({ twitterId: profile.id }).then((currentUser) => {
+        if (currentUser) {
+          console.log("user is", currentUser);
+          done(null, currentUser);
         } else {
           new User({
             username: profile.username,
-            twitterId: profile.id
-          }).save().then((newUser) => {
-            console.log('New User Created' + newUser)
+            twitterId: profile.id,
           })
+            .save()
+            .then((newUser) => {
+              console.log("New User Created" + newUser);
+              done(null, newUser);
+            });
         }
-      })
-
+      });
     }
   )
 );
@@ -139,22 +147,24 @@ passport.use(
       callbackURL: "/auth/github/callback",
     },
     function (accessToken, refreshToken, profile, cb) {
-
       console.log(profile);
       cb(null, profile);
-      User.findOne({githubId: profile.id}).then((currentUser) => {
-        if(currentUser){
-          console.log('user is', currentUser)
+      User.findOne({ githubId: profile.id }).then((currentUser) => {
+        if (currentUser) {
+          console.log("user is ", currentUser);
+          done(null, currentUser);
         } else {
           new User({
             username: profile.username,
-            githubId: profile.id
-          }).save().then((newUser) => {
-            console.log('New User Created' + newUser)
+            githubId: profile.id,
           })
+            .save()
+            .then((newUser) => {
+              console.log("New User Created" + newUser);
+              done(null, newUser);
+            });
         }
-      })
-
+      });
     }
   )
 );
@@ -198,17 +208,21 @@ app.get(
   }
 );
 
-app.get('/logout', (req, res) => {
+app.get('/getuser', (req, res) => {
+  res.send(req.user);
+})
+
+app.get("/logout", (req, res) => {
   if (req.user) {
     req.logout();
-    res.send("Successfully logged out")
+    res.send("done");
   }
-})
+});
 
 app.post("/login", (req, res, next) => {
   passport.authenticate("local", (err, user, info) => {
     if (err) throw err;
-    if (!user) res.send("No user with that email");
+    if (!user) res.send("No user with that username");
     else {
       req.login(user, (err) => {
         if (err) throw err;
@@ -218,13 +232,13 @@ app.post("/login", (req, res, next) => {
   })(req, res, next);
 });
 app.post("/register", (req, res) => {
-  User.findOne({ email: req.body.email }, async (err, doc) => {
+  User.findOne({ username: req.body.username }, async (err, doc) => {
     if (err) throw err;
     if (doc) res.send("User already registered");
     if (!doc) {
       const hashedPassword = await bcrypt.hash(req.body.password, 10);
       const newUser = new User({
-        email: req.body.email,
+        username: req.body.username,
         password: hashedPassword,
       });
       await newUser.save();

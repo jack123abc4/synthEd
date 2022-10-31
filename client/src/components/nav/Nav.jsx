@@ -10,9 +10,11 @@ const Nav = ({user}) => {
    const [click, setClick] = useState(false);
    const handleClick = () => setClick(!click);
    const logout = () => {
-      axios.get("https://synthed.herokuapp.com/auth/logout").then(res => {
-         if (res.data) {
-            window.location.href = "/login"
+      axios.get("https://synthed.herokuapp.com/auth/logout", {
+         withCredentials: true
+      }).then(res => {
+         if (res.data === "done") {
+            window.location.href = "/"
          }
       })
    }
@@ -21,7 +23,7 @@ const Nav = ({user}) => {
         <Link to='/'>
             <h1>SynthEd.</h1>
         </Link>
-
+{user ? (
         <ul className={click ? "nav-menu active" : "nav-menu"}>
             <li>
                <Link to='/'>Home</Link> 
@@ -44,11 +46,33 @@ const Nav = ({user}) => {
             <li>
             <Link to='/login'>Login</Link> 
             </li>
+            </ul>
+            ) : (
+               <ul className={click ? "nav-menu active" : "nav-menu"}>
+               <li>
+                  <Link to='/'>Home</Link> 
+               </li>
+               <li>
+                  <Link to='/play'>Sequencer</Link>
+               </li>
+               <li>
+                  <Link to='/piano'>Piano Player</Link> 
+               </li>
+               <li>
+                  <Link to='/resources'>Resources</Link> 
+               </li>
+               <li>
+                  <Link to='/account'>Account</Link> 
+               </li>
+               <li>
+                  <Link to='/about'>About Us</Link> 
+               </li>
+
             <li className='logoutBtn' onClick={logout}>Logout
             </li> 
 
 
-        </ul>
+        </ul>)}
 
          <div className='hamburger' onClick={handleClick}>
             {click ? (<FaTimes size={20} style={{color: 'white'}} />) : (<GiMusicalScore size={40} style={{color: 'white'}} />)}
