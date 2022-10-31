@@ -154,10 +154,16 @@
 
     .left{
         display: none;
+
+        .contact-wrapper {
+            flex-direction: column;
+            padding: 0 50px;
+        }
     }
     .right {
         flex: 1;
         display: flex;
+        
         p {
             text-align: left;
         }
