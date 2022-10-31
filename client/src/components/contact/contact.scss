@@ -1,7 +1,9 @@
 .contact {
      height: 100vh;
+     width: 100vw;
     position: relative;
     overflow: hidden;
+    background-color: black;
 
     h2 {
         color: white;
@@ -17,6 +19,8 @@
 .contact-wrapper {
     padding: 50px;
     display: flex;
+    width: 100%;
+
 }
 
 .left {
