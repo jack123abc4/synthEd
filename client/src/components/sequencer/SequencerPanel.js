@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import NoteSquare from './NoteSquare';
 import Grid from '@mui/material/Grid';
-import { useMutation } from '@apollo/client';
-import { GET_TRACK_BY_TYPE } from '../../utils/queries';
+import { useMutation, useQuery } from '@apollo/client';
+import { GET_TRACK_BY_TYPE, QUERY_ACTIVE_NOTES_BY_TRACK } from '../../utils/queries';
 import { CREATE_TRACK, CREATE_NOTE_BY_NAME, ADD_NOTE_TO_TRACK }  from '../../utils/mutations'
 import * as Tone from 'tone';
 import { letterSpacing } from '@mui/system';
@@ -21,21 +21,38 @@ const SequencerPanel = (props) => {
     const [currentlyPlaying, setCurrentlyPlaying] = useState(false);
     const [time, setTime] = useState(0);
     const [startTime, setStartTime] = useState(0);
-    const loop = useRef(new Tone.Loop((time) => {
-        // triggered every eighth note.
-        // console.log(time)
-        const currentMeasure = measure
-        console.log(currentMeasure,currentMeasure+1)
-        setTime(time);
-        const newMeasure = Math.floor(time-startTime)%16
-        setMeasure(currentMeasure+1)
-    }, "8n").start(0))
-
-
+    // const { loading, error, data, refetch } = useQuery(
+    //     QUERY_ACTIVE_NOTES_BY_TRACK, {
+    //     variables: {position:measure}})
+    // const [nextNotes, setNextNotes] = useQuery(
+    //     QUERY_ACTIVE_NOTES_BY_TRACK, {
+    //     variables: {position:nextMeasure}});
+    let loop = useRef(null)
     
+    // const { loading, error, data } = useQuery(
+    //     QUERY_TRACK_BY_TYPE, {
+    //     variables: {trackType:"sequencer_main"}
+    // });
+  const getTime = async () => {
+    let currentTime = new Date();
+    currentTime = currentTime.getTime()/1000;
+    const nextMeasure = Math.floor(currentTime-startTime)%16;
+    setMeasure(nextMeasure);
+    console.log(startTime,currentTime)
+    
+    // console.log(await refetch({}))
+    
+    console.log("tick",nextMeasure);
+  };
 
+  useEffect(() => {
+    const interval = setInterval(() => getTime(), 1000);
+    const currentStartTime = new Date();
+    setStartTime(currentStartTime.getTime()/1000)
+    
+    return () => clearInterval(interval);
+  }, []);
 
-    let timer = null;
     
 
     // useEffect(() => {
@@ -158,12 +175,26 @@ const SequencerPanel = (props) => {
         setCurrentlyPlaying(!currentlyPlaying);
         if (!currentlyPlaying) {
             console.log("Started!")
+            await Tone.context.close();
+            Tone.context = new AudioContext();
+            loop = new Tone.Loop((time) => {
+                // triggered every eighth note.
+                // console.log(time)
+                const currentMeasure = measure
+                console.log(currentMeasure,currentMeasure+1)
+                setTime(time);
+                const newMeasure = Math.floor(time-startTime)%16
+                setMeasure(newMeasure)
+            }, "8n").start(0);
             setStartTime(Tone.now())
-            Tone.Transport.start();
+            
+            
             
         }
         else {
             console.log("Stopped!")
+            // await Tone.context.close();
+            loop = null;
             Tone.Transport.stop();
             
         }
@@ -172,6 +203,7 @@ const SequencerPanel = (props) => {
     let playState = !currentlyPlaying ? "Play" : "Pause";
     return(
         <>
+    <h2>Filler</h2>
     <button onClick={handlePlay}>{playState}</button>
     <h2>Measure: {measure} {startTime} {time}</h2>
     {/* <h2>Measure: {measure} </h2> */}
