@@ -31,9 +31,13 @@
     font-size: 3.5rem;
 }
 
-.hero-img p {
-    font-size: 2.4rem;
+p {
+    font-size: 1.6rem;
     text-align: center;
+
+    &:hover {
+        cursor: default;
+    }
 }
 
 @media screen and (max-width: 640px) {

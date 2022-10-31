@@ -93,9 +93,11 @@
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
+		overflow: scroll;
 		   width: 100vw;
 		   height: 100vh;
 		   position: relative;
+		   flex-wrap: wrap;
 
 		   .container {
 			flex-wrap: wrap;
@@ -117,6 +119,9 @@
 		   }
 		   }
 
+		   .container::-webkit-scrollbar {
+			display: none;
+		}
 		   
    
    
