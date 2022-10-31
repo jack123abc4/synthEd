@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useMutation, useQuery, gql } from '@apollo/client';
+import './play.scss'
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import { QUERY_TRACKS, QUERY_NOTES, QUERY_NOTES_BY_TRACK, QUERY_TRACK_BY_TYPE } from '../utils/queries';
@@ -26,7 +27,7 @@ const Play = () => {
     if (error) return (<div> Error: {error.message} </div>)
     if (data)
     return(
-        <div>
+        <div className='sequencer'>
             <h1>Sequencer</h1>
             
             {/* <ul>

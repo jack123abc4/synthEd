@@ -1,0 +1,19 @@
+
+
+.playBtn {
+    margin: 15px 0 15px 0;
+    width: 150px;
+    height: 40px;
+    border-radius: 8px;
+    font-size: 18px;
+
+    &:hover {
+        cursor: pointer;
+        background: linear-gradient(45deg, #bc00fe, white);
+        font-weight: 500;
+    }
+}
+.seq-grid {
+    border-radius: 8px;
+}
+

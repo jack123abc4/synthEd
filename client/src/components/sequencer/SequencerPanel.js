@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import NoteSquare from './NoteSquare';
 import Grid from '@mui/material/Grid';
+import './sequencer.scss';
 import { useMutation, useQuery } from '@apollo/client';
 import { GET_TRACK_BY_TYPE, QUERY_ACTIVE_NOTES_BY_TRACK } from '../../utils/queries';
 import { CREATE_TRACK, CREATE_NOTE_BY_NAME, ADD_NOTE_TO_TRACK }  from '../../utils/mutations'
@@ -203,12 +204,8 @@ const SequencerPanel = (props) => {
     let playState = !currentlyPlaying ? "Play" : "Pause";
     return(
         <>
-    <h2>Filler</h2>
-    <button onClick={handlePlay}>{playState}</button>
-    <h2>Measure: {measure} {startTime} {time}</h2>
-    {/* <h2>Measure: {measure} </h2> */}
-    <button onClick={handleMeasureBack}>Back</button>
-    <button onClick={handleMeasureForward}>Forward</button>
+    <button className='playBtn' onClick={handlePlay}>{playState}</button>
+    
     <Grid container>
         {noteSquareGrid.map(function(col) {
             return (col)

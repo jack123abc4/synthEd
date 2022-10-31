@@ -44,7 +44,7 @@ const Nav = ({user}) => {
             <li>
             <Link to='/login'>Login</Link> 
             </li>
-            <li onClick={logout}>Logout
+            <li className='logoutBtn' onClick={logout}>Logout
             </li> 
 
 
