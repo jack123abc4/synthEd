@@ -10,7 +10,7 @@ const Nav = ({user}) => {
    const [click, setClick] = useState(false);
    const handleClick = () => setClick(!click);
    const logout = () => {
-      axios.get("http://localhost:3000/auth/logout").then(res => {
+      axios.get("https://synthed.herokuapp.com/auth/logout").then(res => {
          if (res.data) {
             window.location.href = "/"
          }
