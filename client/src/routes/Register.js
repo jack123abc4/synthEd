@@ -6,7 +6,7 @@ import Register from '../components/account/Register';
 const Signup = () => {
   return (
     <div className="register-nav">
-      <Nav />
+
       <div className="section">
         <Register />
       </div>

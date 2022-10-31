@@ -3,14 +3,19 @@ import './nav.css';
 import { Link } from 'react-router-dom';
 import {  FaTimes } from 'react-icons/fa';
 import { GiMusicalScore } from 'react-icons/gi';
-import { useAuth0 } from '@auth0/auth0-react';
+import axios from 'axios';
 
 
 const Nav = ({user}) => {
    const [click, setClick] = useState(false);
    const handleClick = () => setClick(!click);
-   // const { logout, isAuthenticated } = useAuth0();
-   const { logout, isAuthenticated } = useState(null);
+   const logout = () => {
+      axios.get("http://localhost:3000/auth/logout").then(res => {
+         if (res.data) {
+            window.location.href = "/"
+         }
+      })
+   }
   return (
     <div className='nav'>
         <Link to='/'>
@@ -33,13 +38,14 @@ const Nav = ({user}) => {
             <li>
                <Link to='/about'>About Us</Link> 
             </li>
-            {isAuthenticated ?
             <li>
-            <Link to='/login' onClick={() => logout()}>Logout</Link> 
-            </li> : <li>
             <Link to='/login'>Login</Link> 
             </li>
-            }
+            <li>
+            <Link to='/login' onClick={logout}>Logout</Link> 
+            </li> 
+
+
         </ul>
 
          <div className='hamburger' onClick={handleClick}>

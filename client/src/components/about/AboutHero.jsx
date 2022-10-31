@@ -1,4 +1,4 @@
-import './aboutHero.css'
+import './aboutHero.scss'
 import React from 'react'
 
 const AboutHero = () => {

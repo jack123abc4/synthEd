@@ -4,6 +4,15 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 
 const Register = () => {
+  const googleLogin = () => {
+    window.open("http://localhost:3000/auth/google", "_self")
+  };
+  const githubLogin = () => {
+    window.open("http://localhost:3000/auth/github", "_self")
+  };
+  const twitterLogin = () => {
+    window.open("http://localhost:3000/auth/twitter", "_self")
+  };
   const [registerUsername, setRegisterUsername] = useState("");
   const [registerPassword, setRegisterPassword] = useState("");
   const register = () => {
@@ -22,14 +31,14 @@ const Register = () => {
       <h1 className="login-title">Choose a Registration Method</h1>
       <div className="wrapper">
         <div className="left">
-          <div className="loginBtn google">
+          <div className="loginBtn google" onClick={googleLogin}>
             <img src="assets/google.png" alt="" className="icon" /> Google
           </div>
-          <div className="loginBtn">
-            <img src="assets/facebook.png" alt="" className="icon" /> Facebook
+          <div className="loginBtn" onClick={githubLogin}>
+            <img src="assets/github.png" alt="" className="icon" /> Github
           </div>
           <div className="loginBtn">
-            <img src="assets/twitterlogo.png" alt="" className="icon" /> Twitter
+            <img src="assets/twitterlogo.png" alt="" className="icon" onClick={twitterLogin} /> Twitter
           </div>
         </div>
         <div className="center">

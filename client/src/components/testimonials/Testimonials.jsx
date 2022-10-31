@@ -14,7 +14,7 @@ export default function Testimonials() {
     },
     {
       id: 2,
-      name: "Joe Han",
+      name: "John Doe",
       title: "Full-Stack Professor",
       img:
         "assets/jh.png",
@@ -37,7 +37,7 @@ export default function Testimonials() {
   return (
     <div className="testimonials" id="testimonials">
       <h1>Testimonials</h1>
-      <div className="container">
+      <div className="test-container">
         {data.map((d) => (
           <div className={d.featured ? "card featured" : "card"}>
             <div className="top">

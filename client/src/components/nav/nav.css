@@ -17,7 +17,7 @@
 }
 
 .nav-menu li {
-    padding: 0 1rem;
+    padding: 0.1rem;
 }
 
 .nav-menu li a {
@@ -31,6 +31,14 @@
 
 .hamburger:hover {
     cursor: pointer;
+}
+
+@media screen and (max-width: 400px) {
+    
+    .hamburger {
+        display: initial;
+    }
+    
 }
 
 @media screen and (max-width: 1040px) {
