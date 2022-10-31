@@ -30,12 +30,14 @@ const typeDefs = gql`
     note(_id: String): [Note]
     notes: [Note]
     trackByType(type: String): Track
+    activeNotesByTrack(_id: String, active: Boolean, position: Int): [Note]
   }
 
   type Mutation {
     createNoteByName(noteName: String): Note
     addNoteToTrack(trackId: String, noteId: String, position: Int): Track
     createTrack(trackType: String): Track
+    toggleNote(noteId: String): Note
   }
 `;
 
