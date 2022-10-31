@@ -33,7 +33,7 @@
     cursor: pointer;
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 480px) {
     
     .hamburger {
         display: initial;

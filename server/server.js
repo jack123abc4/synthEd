@@ -48,11 +48,18 @@ app.use(
   })
 );
 
+app.set("trust proxy", 1);
+
 app.use(
   session({
     secret: process.env.SECRET,
     resave: true,
     saveUninitialized: true,
+    cookie: {
+      sameSite: "none",
+      secure: true,
+      maxAge: 1000 * 60 * 60 * 24 * 7
+    }
   })
 );
 
@@ -73,7 +80,7 @@ passport.deserializeUser((user, done) => {
 passport.use(
   new GoogleStrategy(
     {
-      clientID: process.env.GOOGLE_CLIENT_ID,
+      clientID: "865152093668-p1pbgc18oe0fealqa4nomn17ut5t9925.apps.googleusercontent.com",
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
       callbackURL: "/auth/google/callback",
     },
@@ -107,6 +114,19 @@ passport.use(
     function (accessToken, refreshToken, profile, cb) {
       console.log(profile);
       cb(null, profile);
+      User.findOne({twitterId: profile.id}).then((currentUser) => {
+        if(currentUser){
+          console.log('user is', currentUser)
+        } else {
+          new User({
+            username: profile.username,
+            twitterId: profile.id
+          }).save().then((newUser) => {
+            console.log('New User Created' + newUser)
+          })
+        }
+      })
+
     }
   )
 );
@@ -122,6 +142,19 @@ passport.use(
 
       console.log(profile);
       cb(null, profile);
+      User.findOne({githubId: profile.id}).then((currentUser) => {
+        if(currentUser){
+          console.log('user is', currentUser)
+        } else {
+          new User({
+            username: profile.username,
+            githubId: profile.id
+          }).save().then((newUser) => {
+            console.log('New User Created' + newUser)
+          })
+        }
+      })
+
     }
   )
 );

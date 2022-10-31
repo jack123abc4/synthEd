@@ -3,6 +3,7 @@ import * as Tone from "tone";
 export function playNote(event) {
   if (event.keyCode === 81) {
     playC4();
+    
   }
   if (event.keyCode === 50) {
     playDb4();
