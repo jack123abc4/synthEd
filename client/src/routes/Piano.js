@@ -96,6 +96,7 @@ import {
 } from "./temp.fn.js";
 
 // window.addEventListener('keydown', playNote);
+const WHITE_KEY_WIDTH = 2.222;
 
 const Piano = () => {
   useEffect(() => {
@@ -109,7 +110,7 @@ const Piano = () => {
     <div className="pianoKeys">
 
       <div className="piano">
-
+     
         {/* octave 1 */}
         {/* <div className="white-key" onClick={playC1}></div>
         <div className="black-key" onClick={playDb1}></div>
