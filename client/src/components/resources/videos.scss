@@ -91,9 +91,11 @@
 }
 
 @media screen and (max-width: 480px) {
-
+.video {
+  object-fit: cover;
+}
   .container {
-    width: 100%;
+    width: 100vw;
     display: flex;
   flex-wrap: wrap;
   overflow-y: scroll;

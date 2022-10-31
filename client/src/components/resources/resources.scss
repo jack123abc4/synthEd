@@ -67,4 +67,20 @@
             }
         }
     }
+
+    @media screen and (max-width: 480px) {
+        .left {
+            width: 100vw;
+            display: flex;
+            left: 80px;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+}
+
+    .right {
+        display: hidden;
+    }
+        
+    }
 }
