@@ -27,6 +27,9 @@ const Nav = ({user}) => {
                <Link to='/'>Home</Link> 
             </li>
             <li>
+               <Link to='/play'>Sequencer</Link>
+            </li>
+            <li>
                <Link to='/piano'>Piano Player</Link> 
             </li>
             <li>
