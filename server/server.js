@@ -7,7 +7,7 @@ const cookieParser = require("cookie-parser");
 const bcrypt = require("bcryptjs");
 const session = require("express-session");
 require("dotenv").config();
-const User = require("./models/UserOld");
+const User = require("./models/User");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const TwitterStrategy = require("passport-twitter").Strategy;
 const GitHubStrategy = require("passport-github2").Strategy;
@@ -66,7 +66,7 @@ app.use(
 app.use(cookieParser("secret"));
 app.use(passport.initialize());
 app.use(passport.session());
-// require('./passportConfig')(passport);
+require('./passportConfig')(passport);
 
 passport.serializeUser((user, done) => {
   return done(null, user);
