@@ -16,16 +16,21 @@ const Login = () => {
   const [loginUsername, setLoginUsername] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
   const login = () => {
-    axios({
-      method: "POST",
-      data: {
-        username: loginUsername,
-        password: loginPassword,
-      },
-      withCredentials: true,
-      url: "https://synthed.herokuapp.com/login",
-    }).then((res) => console.log(res));
-  };
+    const data = {
+      username: loginUsername,
+      password: loginPassword,
+    }
+    console.log(data);
+    axios.post("https://synthed.herokuapp.com/login", data).then(
+      res => {
+        console.log(res)
+      }
+    ).catch(
+      err => {
+        console.log(err);
+      }
+    )
+    }
   return (
     <div className="login">
       <h1 className="login-title">Choose a Login Method</h1>
