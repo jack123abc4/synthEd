@@ -14,12 +14,10 @@ const Register = () => {
     window.open("https://synthed.herokuapp.com/auth/twitter", "_self")
   };
   const [registerUsername, setRegisterUsername] = useState("");
-  const [registerEmail, setRegisterEmail] = useState("");
   const [registerPassword, setRegisterPassword] = useState("");
   const register = () => {
     const data = {
       username: registerUsername,
-      email: registerEmail,
       password: registerPassword,
     }
     console.log(data);
@@ -71,14 +69,6 @@ const Register = () => {
               name="username"
               placeholder="Username"
               onChange={(e) => setRegisterUsername(e.target.value)}
-            />
-            </div>
-            <div className="form-group">
-            <input
-              type="email"
-              name="email"
-              placeholder="Email"
-              onChange={(e) => setRegisterEmail(e.target.value)}
             />
             </div>
             <div className="form-group">

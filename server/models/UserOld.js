@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema
 
 
-const userSchema = ({
+const userSchema = new Schema ({
   googleId: {
     required: false,
     type: String,
