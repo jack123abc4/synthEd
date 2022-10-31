@@ -63,7 +63,7 @@
   padding-top: 16px;
 }
 
-div {
+.white-key, .black-key {
   margin:0;
   padding:0;
   padding-top: 3px;
