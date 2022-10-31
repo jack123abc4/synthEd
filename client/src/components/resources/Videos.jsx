@@ -6,10 +6,10 @@ import {
   pianoBasics,
   beginnerLessons,
   playAlong
-} from "../../data";
+} from "./data";
 
 export default function Videos() {
-  const [selected, setSelected] = useState("featured");
+  const [selected, setSelected] = useState("theory");
   const [data, setData] = useState([]);
   const list = [
     {
@@ -65,11 +65,14 @@ export default function Videos() {
       <div className="container">
         {data.map((d) => (
           <div className="item">
+            <a href={d.link} target="_blank">
             <img
               src={d.img}
               alt=""
             />
+            </a>
             <h3>{d.title}</h3>
+            
           </div>
         ))}
       </div>

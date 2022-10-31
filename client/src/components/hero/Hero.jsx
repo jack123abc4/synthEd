@@ -1,4 +1,4 @@
-import "./hero.css";
+import "./hero.scss";
 import React, { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { BsMusicNote, BsMusicNoteBeamed } from "react-icons/bs";
@@ -44,7 +44,7 @@ const Hero = () => {
           </h3>
 
           <div className="heroBtns">
-            <Link to="/contact" className="btn">
+            <Link to="/register" className="btn">
               Sign Up
             </Link>
             <Link to="/login" className="btn btn-light">

@@ -13,5 +13,76 @@
     align-items: center;
     justify-content: center;
   }
+
+  ul {
+    margin: 10px;
+    padding: 0;
+    display: flex;
+
+  }
+
+  .container {
+    width: 70%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    
+
+    .item {
+      width: 300px;
+      height: 250px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      margin: 50px 20px; 
+      transition: all .5s ease;
+      object-fit: contain;
+
+      img, a {
+        width: 300px;
+        height: 250px;
+        border-radius: 22px;
+        margin: 50px 20px;        
+        z-index: 1;
+
+
+        &:hover {
+            opacity: 0.4;
+            cursor: pointer;
+            z-index: 0;
+
+            h3 {
+              z-index: 1;            }
+
+
+        }
+      }
+
+      h3 {
+        position: absolute;
+        font-size: 28px;
+        margin: 0 auto;
+        left: 0;
+        right: 0;
+        top: 50%;         
+        width: 70%;
+
+
+        
+        &:hover {
+          cursor: pointer;
+          img, a {
+            opacity: 0.4;
+            cursor: pointer;
+            z-index: 0;
+          }
+
+          
+        }
+      }
+    }
+  }
   }
 

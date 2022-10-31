@@ -1,12 +1,14 @@
-.portfolioList {
-    font-size: 14px;
-    margin-right: 50px;
-    padding: 7px;
-    border-radius: 10px;
-    cursor: pointer;
-  
-    &.active {
-      background-color: #0FF8E5;
-      color: white;
-    }
+li {
+  font-size: 22px;
+  margin-right: 45px;
+  padding: 0.6px;
+  cursor: pointer;
+  font-weight: 500;
+
+  &.active {
+    font-weight: 800;
+    background: linear-gradient(45deg, black, #bc00fe );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
+}
