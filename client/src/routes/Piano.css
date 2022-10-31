@@ -126,6 +126,16 @@
   border-radius:0 5px 5px 5px
 }
 
-@media screen and (max-width: 480px) and (orientation: landscape) {
-  
+@media screen and (max-width: 480px)   {
+  .pianoKeys {
+    transform: rotate(90deg);
+    transform-origin: right top;
+    width: 78vh;
+    overflow-x: hidden;
+    top: 100%;
+    position: fixed;
+
+
+  }
+
 }
