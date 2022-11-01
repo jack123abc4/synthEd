@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const passport = require("passport");
 
-const CLIENT_URL = "http://localhost:3000";
+const CLIENT_URL = "https://synthed.herokuapp.com";
 
 router.get("/login/success", (req, res) => {
   if (req.user) {
@@ -25,4 +25,4 @@ router.get("/logout", (req, res) => {
   res.redirect(CLIENT_URL);
 });
 
-module.exports = router
+module.exports = router;
