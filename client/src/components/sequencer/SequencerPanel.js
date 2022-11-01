@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import NoteSquare from './NoteSquare';
+import SaveModal from './SaveModal'
 import Grid from '@mui/material/Grid';
 import './sequencer.scss';
 import { useMutation, useQuery } from '@apollo/client';
@@ -225,7 +226,7 @@ const SequencerPanel = (props) => {
     return(
         <>
     <button className='playBtn' onClick={handlePlay}>{playState}</button>
-    <button className='saveBtn' onClick={handleSave}></button>
+    <SaveModal></SaveModal>
     <Grid container>
         {noteSquareGrid.map(function(col) {
             return (col)
