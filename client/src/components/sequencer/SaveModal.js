@@ -7,7 +7,8 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { useMutation, useQuery } from '@apollo/client';
-import { SAVE_TRACK }  from '../../utils/mutations'
+import { SAVE_TRACK }  from '../../utils/mutations';
+import './sequencer.scss';
 
 const SaveModal = (props) => {
   const [open, setOpen] = React.useState(false);
@@ -43,7 +44,7 @@ const SaveModal = (props) => {
 
   return (
     <div>
-      <button onClick={handleClickOpen}>
+      <button className='modal-save' onClick={handleClickOpen}>
         Save
       </button>
       <Dialog open={open} onClose={handleClose}>

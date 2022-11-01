@@ -17,3 +17,15 @@
     border-radius: 8px;
 }
 
+.modal-save {
+    margin-bottom: 10px;
+    width: 75px;
+    height: 35px;
+    border-radius: 8px;
+    &:hover {
+        cursor: pointer;
+        background: linear-gradient(-45deg, #bc00fe, white);
+        font-weight: 500;
+    }
+}
+

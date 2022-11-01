@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{ useEffect, useState } from 'react';
 import './index.scss';
 import Home from './routes/Home';
 import About from './routes/About';
@@ -9,6 +9,7 @@ import Register from './routes/Register';
 import Login from './routes/Login';
 import Nav from './components/nav/Nav';
 import Play from './routes/Play';
+
 
 // import { ApolloProvider } from "@apollo/react-hooks";
 // import ApolloClient from "apollo-boost";
@@ -34,7 +35,33 @@ const client = new ApolloClient({
 
 
 function App() {
-const user = false;
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const getUser = () => {
+      fetch("http://localhost:3000/auth/login/success", {
+        method: "GET",
+        credentials: "include",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Credentials": true,
+        },
+      })
+        .then((response) => {
+          if (response.status === 200) return response.json();
+          throw new Error("authentication has been failed!");
+        })
+        .then((resObject) => {
+          setUser(resObject.user);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    };
+    getUser();
+  }, []);
+
   return (
     
     <ApolloProvider  client={client}>
