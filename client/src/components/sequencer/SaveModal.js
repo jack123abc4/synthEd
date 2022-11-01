@@ -25,6 +25,7 @@ const SaveModal = (props) => {
     const textValue = document.getElementById('title-field').value
     console.log("SAVED",textValue)
     saveTrack({variables: {trackId: props.trackId, name:textValue}})
+    setOpen(false);
     
   }
 

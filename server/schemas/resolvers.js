@@ -83,6 +83,12 @@ const resolvers = {
           return await Track.create({name:name, notes: oldTrack.notes, type:"sequencer"})
         // }
         // return oldTrack;
+    },
+    deleteTrack: async(parent, {trackId}) => {
+
+      await Track.deleteOne({_id:trackId})
+      return (trackId)
+      
     }
   }
 };
