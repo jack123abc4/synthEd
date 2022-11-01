@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useMutation } from '@apollo/client'
 import Box from '@mui/material/Box';
 import { CREATE_NOTE_BY_NAME, ADD_NOTE_TO_TRACK, TOGGLE_NOTE } from '../../utils/mutations';
-import './noteSquare.scss'
 
 // import { useQuery } from '@apollo/client';
 import { QUERY_NOTE_BY_ID } from '../../utils/queries.js';
