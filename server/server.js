@@ -65,7 +65,7 @@ app.use(
   })
 );
 
-app.use(cookieParser("secret"));
+app.use(cookieParser(process.env.SECRET));
 app.use(passport.initialize());
 app.use(passport.session());
 require("./passportConfig")(passport);

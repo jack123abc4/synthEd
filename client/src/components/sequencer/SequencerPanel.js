@@ -79,6 +79,7 @@ const SequencerPanel = (props) => {
         
     
     // loop.start(0);
+
     const noteNames = ["Bb","C", "D", "F", "G"];
     // 4 - floor(index%16 / 5)
     const synth = new Tone.Synth().toDestination();
@@ -86,6 +87,7 @@ const SequencerPanel = (props) => {
     const width = 16;
     const height = 16;
     const noteSquareGrid = [];
+
     for (let row=0; row < width; row ++) {
         
         const noteSquareCol = [];
@@ -96,6 +98,7 @@ const SequencerPanel = (props) => {
             const noteName = `${letComp}${numComp}`
             
             noteSquareCol.push(
+                
             <Grid key={index}>
                 <NoteSquare
                 noteName = {noteName}
