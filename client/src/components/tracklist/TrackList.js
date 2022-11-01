@@ -16,6 +16,7 @@ import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import FolderIcon from '@mui/icons-material/Folder';
 import DeleteIcon from '@mui/icons-material/Delete';
+import './trackList.scss'
 import Demo from './Demo'
 import {  QUERY_TRACKS_BY_TYPE } from '../../utils/queries';
 import { DELETE_TRACK } from '../../utils/mutations'
@@ -81,7 +82,7 @@ const TrackList = () => {
             <div className="track-list">
               <List dense={true}>
               {trackList.map(function(track) {
-            return (<ListItem
+            return (<ListItem className='del-list'
               secondaryAction={
                 <button id={`delete-${track._id}`} onClick={handleDelete}>DELETE</button>
                 // <IconButton edge="end" aria-label="delete">

@@ -10,10 +10,10 @@ const Nav = ({user}) => {
    const [click, setClick] = useState(false);
    const handleClick = () => setClick(!click);
    const logout = () => {
-      axios.get("https://synthed.herokuapp.com/auth/logout", {
+      axios.get("http://localhost:3001/auth/logout", {
          withCredentials: true
       }).then(res => {
-         if (res.data === "done") {
+         if (res.data) {
             window.location.href = "/"
          }
       })
@@ -70,6 +70,11 @@ const Nav = ({user}) => {
         <li>
         <Link to='/login'>Login</Link> 
         </li>
+        <li>
+         <Link to='/'>Logout</Link>
+        </li>
+        {/* <li className='logoutBtn' onClick={logout}>Logout
+</li>  */}
         </ul>
                        )}
 
