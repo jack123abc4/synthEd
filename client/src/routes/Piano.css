@@ -63,11 +63,10 @@
   margin:0;
   padding:0;
   padding-top: 3px;
-  /* list-style:none; */
   position:relative;
   display: flex;
   justify-content: center;
-
+  align-items: flex-end;
 }
 
 .piano .white-key {
@@ -112,10 +111,6 @@
   background:linear-gradient(to right,#444 0%,#222 100%);
   font-weight: 700;
   transition: 0s ease-in-out;
-}
-
-.a,.g,.f,.d,.c {
-  margin:0 0 0 -1em
 }
 
 .piano div:first-child {
