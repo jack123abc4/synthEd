@@ -29,7 +29,7 @@ const typeDefs = gql`
     tracks: [Track]
     note(_id: String): [Note]
     notes: [Note]
-    trackByType(type: String): Track
+    trackByType(type: String, wipe:Boolean): Track
     activeNotesByTrack(_id: String, active: Boolean, position: Int): [Note]
   }
 
@@ -38,6 +38,7 @@ const typeDefs = gql`
     addNoteToTrack(trackId: String, noteId: String, position: Int): Track
     createTrack(trackType: String): Track
     toggleNote(noteId: String): Note
+    deleteNotes(trackId: String): Track
   }
 `;
 

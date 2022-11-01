@@ -22,9 +22,13 @@ const resolvers = {
     notes: async () => {
       return await Note.find({});
     },
-    trackByType: async(parent, {type}) => {
+    trackByType: async(parent, {type,wipe}) => {
       const params = type ? { type } : {};
-      return await Track.findOne(params);
+      const t = await Track.findOne(params);
+      if (wipe) {
+        await Note.deleteMany({trackId: t._id})
+      }
+      return t;
     },
     activeNotesByTrack: async(parent, {_id, active, position}) => {
       return await Note.find({trackId: _id, active, position})
@@ -54,6 +58,10 @@ const resolvers = {
       console.log(note,activeState);
 
       return await Note.findOneAndUpdate({_id: noteId}, {active:activeState},{new:true})
+    },
+    deleteNotes: async(parent, {trackId}) => {
+      await Note.deleteMany({trackId: trackId});
+      return await Track.find({_id: trackId});
     }
   }
 };
