@@ -5,32 +5,27 @@ import { Link } from "react-router-dom";
 
 const Login = () => {
   const googleLogin = () => {
-    window.open("https://synthed.herokuapp.com/auth/google", "_self")
+    window.open("http://localhost:3001/auth/google", "_self")
   };
   const githubLogin = () => {
-    window.open("https://synthed.herokuapp.com/auth/github", "_self")
+    window.open("http://localhost:3001/auth/github", "_self")
   };
   const twitterLogin = () => {
-    window.open("https://synthed.herokuapp.com/auth/twitter", "_self")
+    window.open("http://localhost:3001/auth/twitter", "_self")
   };
   const [loginUsername, setLoginUsername] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
   const login = () => {
-    const data = {
-      username: loginUsername,
-      password: loginPassword,
-    }
-    console.log(data);
-    axios.post("https://synthed.herokuapp.com/login", data).then(
-      res => {
-        console.log(res)
-      }
-    ).catch(
-      err => {
-        console.log(err);
-      }
-    )
-    }
+    axios({
+      method: "POST",
+      data: {
+        username: loginUsername,
+        password: loginPassword,
+      },
+      withCredentials: true,
+      url: "http://localhost:3001/login",
+    }).then((res) => console.log(res));
+  };
   return (
     <div className="login">
       <h1 className="login-title">Choose a Login Method</h1>
