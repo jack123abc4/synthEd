@@ -42,7 +42,7 @@ const SaveModal = (props) => {
 
   return (
     <div>
-      <button onClick={handleClickOpen}>
+      <button className='' onClick={handleClickOpen}>
         Save
       </button>
       <Dialog open={open} onClose={handleClose}>
