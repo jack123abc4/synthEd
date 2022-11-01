@@ -37,7 +37,7 @@ const Play = () => {
     if (data) {
         
         return(
-        <div>
+        <div className='sequencer'>
             <h1>Sequencer</h1>
             
             {/* <ul>
