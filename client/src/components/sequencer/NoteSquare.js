@@ -1,27 +1,32 @@
 import React, { useState, useEffect } from 'react';
-import { useMutation } from '@apollo/client'
+import { useMutation, useQuery } from '@apollo/client'
 import Box from '@mui/material/Box';
 import { CREATE_NOTE_BY_NAME, ADD_NOTE_TO_TRACK, TOGGLE_NOTE } from '../../utils/mutations';
 
 // import { useQuery } from '@apollo/client';
-import { QUERY_NOTE_BY_ID } from '../../utils/queries.js';
+import { QUERY_NOTE_BY_ID, QUERY_NOTE_BY_POSITION } from '../../utils/queries.js';
 import * as Tone from 'tone';
 
 // notesquare
 const NoteSquare = (props) => {
-    const [active, setActive] = useState(false);
+    const [active, setActive] = useState(props.active);
     const [createNoteObj, { data, loading, error }] = useMutation(CREATE_NOTE_BY_NAME);
     const [addNoteToTrack, {trackData, trackLoading, trackError}] = useMutation(ADD_NOTE_TO_TRACK);
     const [toggleNote, {noteData, noteLoading, noteError}] = useMutation(TOGGLE_NOTE);
     
     const [noteObj, setNoteObj] = useState(null);
-    useEffect(async () => {
+    const noteObjInit = async() => {
       const tempNoteObj = await (await createNoteObj({variables: {noteName: props.noteName}})).data.createNoteByName;
       console.log("Mutated! :",tempNoteObj)
       addNoteToTrack({variables: {trackId: props.trackId, noteId: tempNoteObj._id, position: props.position}})
       setNoteObj(tempNoteObj);
-
-    },[])
+    };
+    const { activeLoading, activeError, activeData } = useQuery(
+      QUERY_NOTE_BY_POSITION, {
+      variables: {trackId: props.trackId, noteName:props.noteName,position:props.position}})
+    // useEffect( () => {
+    //   noteObjInit();
+    // },[])
     // const [noteObj, setNoteObj] = useState({
 
     //   name: props.noteName,
@@ -29,7 +34,8 @@ const NoteSquare = (props) => {
     // });
     // const [textContent, setTextContent] = useState(props.noteName);
     
-    const handleClick = (event) => {
+    const handleClick = async (event) => {
+      
       console.log("Note obj",noteObj);
       // const synth = new Tone.Synth().toDestination();
       // synth.triggerAttackRelease(props.noteName,"8n"); 
@@ -50,6 +56,10 @@ const NoteSquare = (props) => {
     //   }
     //   },[props.measure]);
     useEffect(() => {
+      if (noteObj === null) {
+        noteObjInit();
+      }
+      console.log("IS ACTIVE",active);
       if (active && props.position === props.measure) {
         console.log(props.noteName);
         const synth = new Tone.Synth().toDestination();

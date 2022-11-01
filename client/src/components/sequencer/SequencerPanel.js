@@ -4,10 +4,11 @@ import SaveModal from './SaveModal'
 import Grid from '@mui/material/Grid';
 import './sequencer.scss';
 import { useMutation, useQuery } from '@apollo/client';
-import { GET_TRACK_BY_TYPE, QUERY_ACTIVE_NOTES_BY_TRACK } from '../../utils/queries';
+import { GET_TRACK_BY_TYPE, QUERY_ACTIVE_NOTES_BY_TRACK, QUERY_NOTE_BY_POSITION } from '../../utils/queries';
 import { CREATE_TRACK, CREATE_NOTE_BY_NAME, ADD_NOTE_TO_TRACK, DELETE_NOTES }  from '../../utils/mutations'
 import * as Tone from 'tone';
 import { letterSpacing } from '@mui/system';
+import { RowingSharp } from '@mui/icons-material';
 
 
 const SequencerPanel = (props) => {
@@ -25,9 +26,13 @@ const SequencerPanel = (props) => {
     const [time, setTime] = useState(0);
     const [startTime, setStartTime] = useState(0);
     const [queuedAttack, setQueuedAttack] = useState([]);
+    const [init, setInit] = useState(false);
     const { loading, error, data, refetch } = useQuery(
         QUERY_ACTIVE_NOTES_BY_TRACK, {
         variables: {_id: props.trackId, position:measure+1}})
+    const { positionLoading, positionError, positionData } = useQuery(
+        QUERY_NOTE_BY_POSITION
+    )
     // const [nextNotes, setNextNotes] = useQuery(
     //     QUERY_ACTIVE_NOTES_BY_TRACK, {
     //     variables: {position:nextMeasure}});
@@ -68,14 +73,14 @@ const SequencerPanel = (props) => {
     
   };
   
-  useEffect(() => {
+//   useEffect(() => {
     
-    // const interval = createTimer(setInterval(() => getTime(), 1000));
-    // const currentStartTime = new Date();
-    // setStartTime(currentStartTime.getTime()/1000)
+//     // const interval = createTimer(setInterval(() => getTime(), 1000));
+//     // const currentStartTime = new Date();
+//     // setStartTime(currentStartTime.getTime()/1000)
     
-    // return () => clearInterval(interval);
-  }, []);
+//     // return () => clearInterval(interval);
+//   }, []);
 
     
 
@@ -90,19 +95,6 @@ const SequencerPanel = (props) => {
     //         setMeasure(currentMeasure+1)
     //     }, "8n").start(0);
     // },[]);
-
-    // useEffect(() => {
-    //     Tone.start();
-    //     loop = new Tone.Loop((time) => {
-    //         // triggered every eighth note.
-    //         console.log(measure)
-    //         changeMeasure(2);
-    //     }, "4n").start(measure);
-    // },[]);
-        
-    
-    // loop.start(0);
-
     const noteNames = ["Bb","C", "D", "F", "G"];
     // 4 - floor(index%16 / 5)
     
@@ -110,97 +102,19 @@ const SequencerPanel = (props) => {
     const width = 16;
     const height = 16;
     const noteSquareGrid = [];
-
-    for (let row=0; row < width; row ++) {
+    useEffect(() => {
+        if (data) {
+            setInit(true);
+        }
+    },[data]);
         
-        const noteSquareCol = [];
-        for (let col = 0; col < height; col++) {
-            const numComp = 5 - Math.floor(index%16 / 5);
-            const letCompOffset = 0 - Math.floor(index/16);
-            const letComp = noteNames[(5-((index+letCompOffset)%5))%5]
-            const noteName = `${letComp}${numComp}`
-            
-            noteSquareCol.push(
-                
-            <Grid key={index} sx={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-            }}>
-                <NoteSquare
-                noteName = {noteName}
-                position = {row}
-                measure = {measure}
-                currentlyPlaying = {currentlyPlaying}
-                trackId = {props.trackId}
-                />
-                
-            </Grid>)
-            index++;
-        }
-        noteSquareGrid.push(
-        <Grid>
-            {noteSquareCol.map(function(square) {
-                return(square)
-            })}
-            </Grid>)
-    }
-
-    const changeMeasure = (step) => {
-        const currentMeasure = measure
-        // console.log("measure at top: ",measure);
-        if (step === -1) {
-            if (currentMeasure > 0) {
-                setMeasure(currentMeasure-1);
-                
-            }
-            else {
-                setMeasure(15);
-            }
-            // console.log("measure:",currentMeasure)
-        }
-        else if (step === 1) {
-            
-            if (currentMeasure < 15) {
-                // console.log("measure forward",currentMeasure,currentMeasure+1);
-                setMeasure(currentMeasure+1);
-            }
-            else {
-                // console.log("measure wrapped",currentMeasure);
-                setMeasure(0);
-            }
-        }
-    }
-    const handleMeasureBack = () => {
-        if (measure > 0) {
-            setMeasure(measure-1);
-            
-        }
-        else {
-            setMeasure(15);
-        }
-        // console.log("measure:",measure)
-    }
-
     
+    // loop.start(0);
 
-    const handleMeasureForward = () => {
-        if (measure < 15) {
-            // console.log("measure forward",measure);
-            setMeasure(measure+1);
-        }
-        else {
-            // console.log("measure wrapped",measure);
-            setMeasure(0);
-        }
-        
-        
-    }
+   
 
     const handlePlay = async (event) => {
-        
         // await Tone.start();
-
         Tone.start();
         console.log(`Clicked! Changed state ${currentlyPlaying} to ${!currentlyPlaying}`);
         setCurrentlyPlaying(!currentlyPlaying);
@@ -208,25 +122,77 @@ const SequencerPanel = (props) => {
             console.log("Started!")
             const interval = createTimer(setInterval(() => getTime(), 1000));
             const currentStartTime = new Date();
-            setStartTime(currentStartTime.getTime()/1000)
-            
-            
-            
+            setStartTime(currentStartTime.getTime()/1000)  
         }
         else {
             console.log("Stopped!")
             clearInterval(timer);
             createTimer(null);
-            // await Tone.context.close();
+            // await Tone.context.close();   
+        }
+    }
+
+    // if (init) {
+        
+    
+        for (let row=0; row < width; row ++) {
+            
+            const noteSquareCol = [];
             
             
+            console.log("DATA DATA DATA",data)
+            // if (data.activeNotesByLength) {
+            //     for (const note of data.activeNotesByLength) {
+            //         if (note.name === props.name && note.position === props.position) {
+            //             active = true;
+            //         }
+            //     }
+            // }
+            let active;
+            for (let col = 0; col < height; col++) {
+                const numComp = 5 - Math.floor(index%16 / 5);
+                const letCompOffset = 0 - Math.floor(index/16);
+                const letComp = noteNames[(5-((index+letCompOffset)%5))%5]
+                const noteName = `${letComp}${numComp}`
+                active = false;
+                if (props.load) {
+                    for (const activeNote of props.activeNotes) {
+                        console.log(activeNote.name,noteName,activeNote.position,RowingSharp)
+                        if (activeNote.name === noteName && activeNote.position === row) {
+                            active = true;
+                        }
+                        console.log(active);
+                    }
+                 }
+                noteSquareCol.push(
+                
+                <Grid key={index} sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                }}>
+                    <NoteSquare
+                    noteName = {noteName}
+                    position = {row}
+                    measure = {measure}
+                    currentlyPlaying = {currentlyPlaying}
+                    trackId = {props.trackId}
+                    active= {active}
+                    load={props.load}
+                    />
+                    
+                </Grid>)
+                index++;
+            }
+            noteSquareGrid.push(
+            <Grid>
+                {noteSquareCol.map(function(square) {
+                    return(square)
+                })}
+                </Grid>)
         }
 
-    }
-    const handleSave = async(event) => {
-
-    }
-    let playState = !currentlyPlaying ? "Play" : "Pause";
+        let playState = !currentlyPlaying ? "Play" : "Pause";
     return(
         <>
     <button className='playBtn' onClick={handlePlay}>{playState}</button>
@@ -237,6 +203,9 @@ const SequencerPanel = (props) => {
         })}
     </Grid>
     </>)
-};
+    }
+    
+    
+// };
 
 export default SequencerPanel;
