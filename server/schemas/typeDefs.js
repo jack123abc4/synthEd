@@ -39,6 +39,7 @@ const typeDefs = gql`
     createTrack(trackType: String): Track
     toggleNote(noteId: String): Note
     deleteNotes(trackId: String): Track
+    saveTrack(trackId: String, name: String): Track
   }
 `;
 
