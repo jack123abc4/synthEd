@@ -37,3 +37,11 @@ export const TOGGLE_NOTE = gql`
     }
 }
 `;
+
+export const DELETE_NOTES = gql`
+  mutation deleteNotes($trackId: String) {
+    deleteNotes(trackId: $trackId) {
+        _id
+    }
+  }
+`

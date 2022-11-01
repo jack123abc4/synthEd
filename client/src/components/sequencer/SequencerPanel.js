@@ -3,7 +3,7 @@ import NoteSquare from './NoteSquare';
 import Grid from '@mui/material/Grid';
 import { useMutation, useQuery } from '@apollo/client';
 import { GET_TRACK_BY_TYPE, QUERY_ACTIVE_NOTES_BY_TRACK } from '../../utils/queries';
-import { CREATE_TRACK, CREATE_NOTE_BY_NAME, ADD_NOTE_TO_TRACK }  from '../../utils/mutations'
+import { CREATE_TRACK, CREATE_NOTE_BY_NAME, ADD_NOTE_TO_TRACK, DELETE_NOTES }  from '../../utils/mutations'
 import * as Tone from 'tone';
 import { letterSpacing } from '@mui/system';
 
@@ -17,13 +17,15 @@ const SequencerPanel = (props) => {
     //     }
     // })
     // const [trackObj, setTrackObj] = useState(t);
+    const [deleteNotes, { noteError }] = useMutation(DELETE_NOTES);
     const [measure, setMeasure] = useState(0);
     const [currentlyPlaying, setCurrentlyPlaying] = useState(false);
     const [time, setTime] = useState(0);
     const [startTime, setStartTime] = useState(0);
-    // const { loading, error, data, refetch } = useQuery(
-    //     QUERY_ACTIVE_NOTES_BY_TRACK, {
-    //     variables: {position:measure}})
+    const [queuedAttack, setQueuedAttack] = useState([]);
+    const { loading, error, data, refetch } = useQuery(
+        QUERY_ACTIVE_NOTES_BY_TRACK, {
+        variables: {_id: props.trackId, position:measure+1}})
     // const [nextNotes, setNextNotes] = useQuery(
     //     QUERY_ACTIVE_NOTES_BY_TRACK, {
     //     variables: {position:nextMeasure}});
@@ -38,14 +40,34 @@ const SequencerPanel = (props) => {
     currentTime = currentTime.getTime()/1000;
     const nextMeasure = Math.floor(currentTime-startTime)%16;
     setMeasure(nextMeasure);
+    console.log(measure,queuedAttack);
+    const synth = new Tone.PolySynth().toDestination();
+    synth.triggerAttackRelease(queuedAttack, "8n");
     console.log(startTime,currentTime)
-    
-    // console.log(await refetch({}))
-    
     console.log("tick",nextMeasure);
-  };
+    const newData = await refetch({})
+    // setQueuedAttack(await refetch({}))
+    if (newData.data.activeNotesByTrack.length > 0) {
+        const newAttack = [];
+        for (const note of newData.data.activeNotesByTrack) {
+            console.log(note.name)
+            newAttack.push(note.name)
+        }
+        console.log("NEW ATTACK",newAttack);
+        setQueuedAttack(newAttack)
 
+        
+    }
+    else {
+        console.log("EMPTY");
+    }
+    console.log(queuedAttack);
+    
+    
+  };
+  
   useEffect(() => {
+    
     const interval = setInterval(() => getTime(), 1000);
     const currentStartTime = new Date();
     setStartTime(currentStartTime.getTime()/1000)
@@ -80,7 +102,7 @@ const SequencerPanel = (props) => {
     // loop.start(0);
     const noteNames = ["Bb","C", "D", "F", "G"];
     // 4 - floor(index%16 / 5)
-    const synth = new Tone.Synth().toDestination();
+    
     let index = 0;
     const width = 16;
     const height = 16;
@@ -175,17 +197,15 @@ const SequencerPanel = (props) => {
         setCurrentlyPlaying(!currentlyPlaying);
         if (!currentlyPlaying) {
             console.log("Started!")
-            await Tone.context.close();
-            Tone.context = new AudioContext();
-            loop = new Tone.Loop((time) => {
-                // triggered every eighth note.
-                // console.log(time)
-                const currentMeasure = measure
-                console.log(currentMeasure,currentMeasure+1)
-                setTime(time);
-                const newMeasure = Math.floor(time-startTime)%16
-                setMeasure(newMeasure)
-            }, "8n").start(0);
+            // loop = new Tone.Loop((time) => {
+            //     // triggered every eighth note.
+            //     // console.log(time)
+            //     const currentMeasure = measure
+            //     console.log(currentMeasure,currentMeasure+1)
+            //     setTime(time);
+            //     const- newMeasure = Math.floor(time-startTime)%16
+            //     setMeasure(newMeasure)
+            // }, "8n").start(0);
             setStartTime(Tone.now())
             
             
@@ -194,8 +214,7 @@ const SequencerPanel = (props) => {
         else {
             console.log("Stopped!")
             // await Tone.context.close();
-            loop = null;
-            Tone.Transport.stop();
+            
             
         }
 
