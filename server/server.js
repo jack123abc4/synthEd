@@ -211,7 +211,9 @@ app.get(
   }
 );
 
-
+app.get("/", (req, res) => {
+  res.send("Hello World")
+})
 
 app.get('/getuser', (req, res) => {
   res.send(req.user);
@@ -252,7 +254,7 @@ app.post("/register", (req, res) => {
   });
 });
 
-// app.use("/auth", authRoute);
+app.use("/auth", authRoute);
 // Create a new instance of an Apollo server with the GraphQL schema
 const startApolloServer = async (typeDefs, resolvers) => {
   await server.start();
