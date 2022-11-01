@@ -50,8 +50,13 @@ const NoteSquare = (props) => {
     //   }
     //   },[props.measure]);
     useEffect(() => {
-
-    },[]);
+      if (active && props.position === props.measure) {
+        console.log(props.noteName);
+        const synth = new Tone.Synth().toDestination();
+        synth.triggerAttackRelease(props.noteName, "8n");
+      }
+      
+    },[props.measure]);
 
 
 

@@ -23,8 +23,8 @@ export const QUERY_TRACKS = gql`
 `
 
 export const QUERY_TRACK_BY_TYPE = gql`
-  query getTrackByType($trackType: String) {
-    trackByType(type: $trackType) {
+  query getTrackByType($trackType: String, $wipe:Boolean) {
+    trackByType(type: $trackType, wipe:$wipe) {
       _id
     }
   }
@@ -74,4 +74,6 @@ export const QUERY_NOTE_BY_ID = gql`
     }
   }
 `
+
+
 
