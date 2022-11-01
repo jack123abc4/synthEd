@@ -85,7 +85,10 @@ const resolvers = {
         // return oldTrack;
     },
     deleteTrack: async(parent, {trackId}) => {
-      return await Track.deleteOne({_id:trackId})
+
+      await Track.deleteOne({_id:trackId})
+      return (trackId)
+      
     }
   }
 };

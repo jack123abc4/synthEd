@@ -27,7 +27,7 @@ const TrackList = () => {
   const [secondary, setSecondary] = useState(false);
   const [load,setLoad] = useState(null);
   const navigate = useNavigate();
-
+  const [deleteTrack, { deleteData, deleteLoading, deleteError }] = useMutation(DELETE_TRACK);
   // const generate = (element) => {
   //   return [0, 1, 2].map((value) =>
   //     React.cloneElement(element, {
@@ -35,12 +35,21 @@ const TrackList = () => {
   //     }),
   //   );
   // }
-  const { loading, error, data } = useQuery( QUERY_TRACKS_BY_TYPE, { variables: {trackType:"sequencer"}})
+  const { loading, error, data, refetch } = useQuery( QUERY_TRACKS_BY_TYPE, { variables: {trackType:"sequencer"}})
   
-  const handleDelete = (event) => {
+  useEffect(() => {
+    refetch({})
+  },[deleteError])
+
+  const handleDelete = async (event) => {
+    console.log("DELETE SELECTED");
     const trackId = event.target.id.split("-")[1]
     console.log(trackId);
+    await deleteTrack({variables: {trackId:trackId}})
+    await refetch()
   }
+
+
 
   const handleLoad = (event) => {
     const trackId = event.target.id.split("-")[1]
