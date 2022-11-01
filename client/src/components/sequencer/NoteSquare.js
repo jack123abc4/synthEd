@@ -15,6 +15,7 @@ const NoteSquare = (props) => {
     const [toggleNote, {noteData, noteLoading, noteError}] = useMutation(TOGGLE_NOTE);
     
     const [noteObj, setNoteObj] = useState(null);
+    
     const noteObjInit = async() => {
       const tempNoteObj = await (await createNoteObj({variables: {noteName: props.noteName}})).data.createNoteByName;
       console.log("Mutated! :",tempNoteObj)
@@ -62,8 +63,8 @@ const NoteSquare = (props) => {
       console.log("IS ACTIVE",active);
       if (active && props.position === props.measure) {
         console.log(props.noteName);
-        const synth = new Tone.Synth().toDestination();
-        synth.triggerAttackRelease(props.noteName, "8n");
+        const thisSynth = new Tone.Synth().toDestination();
+        thisSynth.triggerAttackRelease(props.noteName, "8n");
       }
       
     },[props.measure]);

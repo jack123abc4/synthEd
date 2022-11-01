@@ -33,6 +33,7 @@ const SequencerPanel = (props) => {
     const { positionLoading, positionError, positionData } = useQuery(
         QUERY_NOTE_BY_POSITION
     )
+    const [synth, setSynth] = useState(new Tone.Synth().toDestination());
     // const [nextNotes, setNextNotes] = useQuery(
     //     QUERY_ACTIVE_NOTES_BY_TRACK, {
     //     variables: {position:nextMeasure}});
@@ -48,8 +49,8 @@ const SequencerPanel = (props) => {
     const nextMeasure = Math.floor(currentTime-startTime)%16;
     setMeasure(nextMeasure);
     console.log(measure,queuedAttack);
-    const synth = new Tone.PolySynth().toDestination();
-    synth.triggerAttackRelease(queuedAttack, "8n");
+    // const synth = new Tone.PolySynth().toDestination();
+    // synth.triggerAttackRelease(queuedAttack, "8n");
     console.log(startTime,currentTime)
     console.log("tick",nextMeasure);
     const newData = await refetch({})
@@ -134,7 +135,9 @@ const SequencerPanel = (props) => {
 
     // if (init) {
         
-    
+        const synths = [
+            
+        ];
         for (let row=0; row < width; row ++) {
             
             const noteSquareCol = [];
@@ -157,13 +160,27 @@ const SequencerPanel = (props) => {
                 active = false;
                 if (props.load) {
                     for (const activeNote of props.activeNotes) {
-                        console.log(activeNote.name,noteName,activeNote.position,RowingSharp)
+                        console.log(activeNote.name,noteName,activeNote.position,row)
                         if (activeNote.name === noteName && activeNote.position === row) {
                             active = true;
                         }
                         console.log(active);
                     }
+                    
                  }
+                 let addSynth = true;
+                 let mySynth = null
+                    for (const s of synths) {
+                        if (s[0] === noteName) {
+                            addSynth = false;
+                            mySynth = s;
+                        }
+                    }
+                    if (addSynth) {
+                        mySynth = [noteName, new Tone.Synth(noteName).toDestination()]
+                        synths.push(mySynth)
+                    }
+                
                 noteSquareCol.push(
                 
                 <Grid key={index} sx={{
@@ -179,6 +196,7 @@ const SequencerPanel = (props) => {
                     trackId = {props.trackId}
                     active= {active}
                     load={props.load}
+                    synth={mySynth}
                     />
                     
                 </Grid>)

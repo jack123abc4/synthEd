@@ -18,6 +18,7 @@ import FolderIcon from '@mui/icons-material/Folder';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Demo from './Demo'
 import {  QUERY_TRACKS_BY_TYPE } from '../../utils/queries';
+import { DELETE_TRACK } from '../../utils/mutations'
 import { Navigate, Link, useNavigate } from 'react-router-dom';
 
 
@@ -35,7 +36,7 @@ const TrackList = () => {
   //   );
   // }
   const { loading, error, data } = useQuery( QUERY_TRACKS_BY_TYPE, { variables: {trackType:"sequencer"}})
-
+  
   const handleDelete = (event) => {
     const trackId = event.target.id.split("-")[1]
     console.log(trackId);

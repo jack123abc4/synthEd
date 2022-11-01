@@ -55,3 +55,11 @@ export const SAVE_TRACK = gql`
     }
   }
 `
+
+export const DELETE_TRACK = gql`
+  mutation deleteTrack($trackId: String) {
+    deleteTrack(trackId: $trackId) {
+        _id
+    }
+  }
+`
