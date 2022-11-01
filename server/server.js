@@ -211,9 +211,6 @@ app.get(
   }
 );
 
-app.get("/", (req, res) => {
-  res.send("Hello World")
-})
 
 app.get('/getuser', (req, res) => {
   res.send(req.user);
