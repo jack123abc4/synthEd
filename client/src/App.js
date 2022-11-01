@@ -45,7 +45,7 @@ const user = false;
       <Route path='/' element={<Home />} />
       <Route path='/piano' element={<Piano />} />
       <Route path='/resources' element={<Resources />} />
-      <Route path='/account' element={user ? <Account /> : <Navigate to="/login" />} />
+      <Route path='/account' element={<Account /> } />
       <Route path='/login' element={user ? <Navigate to='/account' /> : <Login />} />
       <Route path='/register' element={<Register />} />
       <Route path='/about' element={<About />} />

@@ -122,7 +122,11 @@ const SequencerPanel = (props) => {
             
             noteSquareCol.push(
                 
-            <Grid key={index}>
+            <Grid key={index} sx={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+            }}>
                 <NoteSquare
                 noteName = {noteName}
                 position = {row}
