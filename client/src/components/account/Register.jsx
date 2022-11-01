@@ -16,15 +16,20 @@ const Register = () => {
   const [registerUsername, setRegisterUsername] = useState("");
   const [registerPassword, setRegisterPassword] = useState("");
   const register = () => {
-    axios({
-      method: "POST",
-      data: {
-        username: registerUsername,
-        password: registerPassword,
-      },
-      withCredentials: true,
-      url: "https://synthed.herokuapp.com/register",
-    }).then((res) => console.log(res));
+    const data = {
+      username: registerUsername,
+      password: registerPassword,
+    }
+    console.log(data);
+    axios.post("https://synthed.herokuapp.com/register", data).then(
+      res => {
+        console.log(res)
+      }
+    ).catch(
+      err => {
+        console.log(err);
+      }
+    )
   };
   return (
     <div className="login">
@@ -46,19 +51,26 @@ const Register = () => {
           <div className="or">OR</div>
         </div>
 
+
         <div className="right">
+          <form>
+            <div className="form-group">
             <input
               type="text"
               name="username"
               placeholder="Username"
               onChange={(e) => setRegisterUsername(e.target.value)}
             />
+            </div>
+            <div className="form-group">
             <input
               type="password"
               name="password"
               placeholder="Password"
               onChange={(e) => setRegisterPassword(e.target.value)}
             />
+            </div>
+            </form>
             <button type="submit" className="submit" onClick={register}>
               Register
             </button>
@@ -71,5 +83,6 @@ const Register = () => {
     </div>
   );
 };
+
 
 export default Register;

@@ -40,7 +40,7 @@ export default function Story() {
         style={{ transform: `translateX(-${currentSlide * 100}vw)` }}
       >
         {data.map((d) => (
-          <div className="container">
+          <div className="story-container">
             <div className="item">
               <div className="left">
                 <div className="leftContainer">

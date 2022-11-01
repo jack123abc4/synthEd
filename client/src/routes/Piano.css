@@ -32,10 +32,6 @@
 	padding: 5px 8px;
 } */
 
-* {
-  box-sizing:border-box;
-}
-
 
 
 .pianoKeys {
@@ -130,6 +126,18 @@
   border-radius:0 5px 5px 5px
 }
 
-@media screen and (max-width: 480px) and (orientation: landscape) {
-  
+@media screen and (max-width: 480px)   {
+  .pianoKeys {
+    transform: rotate(90deg);
+    transform-origin: right top;
+    width: 100vh;
+    margin: 25px 25px 0 0;
+    padding: 350px 25px 0 0;
+    overflow-x: hidden;
+    top: 100%;
+    position: fixed;
+
+
+  }
+
 }

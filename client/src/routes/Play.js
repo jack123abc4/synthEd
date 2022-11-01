@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useMutation, useQuery, gql } from '@apollo/client';
+import './play.scss'
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import { QUERY_TRACKS, QUERY_NOTES, QUERY_NOTES_BY_TRACK, QUERY_TRACK_BY_TYPE } from '../utils/queries';

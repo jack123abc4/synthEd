@@ -15,11 +15,8 @@ const Resources = () => {
             <div className="imgContainer">
                 <img src="/assets/recording.png" alt="" />
             </div>
-            {/* <a href='#links'>
-        <img src="assets/arrow.png" className='arrow' alt=""></img>
-      </a> */}
         </div>
-        <a href="https://storyset.com/play">Play illustrations by Storyset</a>
+
     </div>
   )
 }

@@ -1,202 +1,197 @@
 .story {
-    background:linear-gradient(45deg, #0FF8E5, black );
-	 background-color: rgb(15, 248, 229);
-	 display: flex;
-	 align-items: center;
-	 justify-content: center;
-     width: 100%;
-     height: 100vh;
-     position: relative;
-	 overflow-x: hidden;
+  background: linear-gradient(45deg, #0ff8e5, black);
+  background-color: rgb(15, 248, 229);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  overflow-x: hidden;
 
-	 .arrow {
-		height: 50px;
-		position: absolute;
-		cursor: pointer;
+  .arrow {
+    height: 50px;
+    position: absolute;
+    cursor: pointer;
 
-		&.left {
-			left: 100px;
-			transform: rotateY(180deg);
-		}
+    &.left {
+      left: 100px;
+      transform: rotateY(180deg);
+    }
 
-		&.right {
-			right: 100px;
-		}
-	 }
+    &.right {
+      right: 100px;
+    }
+  }
+
+  .slider {
+    height: 350px;
+    display: flex;
+    position: absolute;
+    left: 0;
+    transition: all 1s ease-out;
+
+    .story-container {
+      width: 100vw;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .item {
+        width: 700px;
+        height: 100%;
+        background-color: white;
+        border-radius: 20px;
+        display: flex;
+        justify-content: center;
+
+        .left {
+          flex: 4;
+          height: 80%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          .leftContainer {
+            width: 90%;
+            height: 70%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+
+            .imgContainer {
+              width: 40px;
+              height: 40px;
+              border-radius: 50%;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+
+              img {
+                width: 80px;
+                padding-left: 30px;
+              }
+            }
+            h2 {
+              font-size: 20px;
+            }
+            p {
+              font-size: 15px;
+              color: black;
+            }
+          }
+        }
+
+        .right {
+          flex: 8;
+          height: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          overflow: hidden;
+
+          img {
+            width: 400px;
+            transform: rotate(-10deg);
+          }
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    .arrow {
+      height: 50px;
+      position: absolute;
+      cursor: pointer;
+
+      &.left {
+        left: 50px;
+        transform: rotateY(180deg);
+      }
+
+      &.right {
+        right: 50px;
+      }
+    }
+
+    .slider {
+      height: 320px;
+      display: flex;
+      position: absolute;
+      left: 0;
+      transition: all 1s ease-out;
+
+      .story-container {
+        width: 100vw;
+        display: flex;
 
 
 
-	 .slider {
-		height: 350px;
-		display: flex;
-		position: absolute;
-		left: 0;
-		transition: all 1s ease-out;
+        .item {
+          width: 150px;
+          height: 100%;
+          background-color: white;
+          border-radius: 20px;
+          display: flex;
+          justify-content: center;
 
-		.container {
-			width: 100vw;
-			display: flex;
-			align-items: center;
-			justify-content: center;
+          .left {
+            flex: 12;
+            height: 80%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
 
-			.item {
-				width: 700px;
-				height: 100%;
-				background-color: white;
-				border-radius: 20px;
-				display: flex;
-				justify-content: center;
+            .leftContainer {
+              width: 90%;
+              height: 80%;
+              display: flex;
+              flex-direction: column;
 
-				.left {
-					flex: 4;
-					height: 80%;
-					display: flex;
-					align-items: center;
-					justify-content: center;
 
-					.leftContainer {
-						width: 90%;
-						height: 70%;
-						display: flex;
-						flex-direction: column;
-						justify-content: space-between;
+              .imgContainer {
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                display: flex;
 
-						.imgContainer {
-							width: 40px;
-							height: 40px;
-							border-radius: 50%;
-							display: flex;
-							align-items: center;
-							justify-content: center;
 
-							img {
-								width: 80px;
-								padding-left: 30px;
-							}
-						}
-						h2 {
-							font-size: 20px;
-						}
-						p {
-							font-size: 15px;
-							color: black;
-						}
-					}
-				}
 
-				.right {
-					flex: 8;
-					height: 100%;
-					display: flex;
-					align-items: center;
-					justify-content: center;
-					overflow: hidden;
-
-					img {
-						width: 400px;
-						transform: rotate(-10deg);
-					}
-				}
-			
-			}
-		}
-	 }
-
-	 @media screen and (max-width: 480px) {
-
-		.arrow {
-			height: 50px;
-			position: absolute;
-			cursor: pointer;
-	
-			&.left {
-				left: 50px;
-				transform: rotateY(180deg);
-			}
-	
-			&.right {
-				right: 50px;
-			}
-		 }
-	
-		.slider {
-			height: 350px;
-			display: flex;
-			position: absolute;
-			left: 0;
-			transition: all 1s ease-out;
-	
-			.container {
-				width: 100vw;
+              }
+              h2 {
+                font-size: 20px;
 				display: flex;
 				align-items: center;
 				justify-content: center;
-	
-				.item {
-					width: 150px;
-					height: 100%;
-					background-color: white;
-					border-radius: 20px;
-					display: flex;
-					justify-content: center;
-	
-					.left {
-						flex: 12;
-						height: 80%;
-						display: flex;
-						align-items: center;
-						justify-content: center;
-	
-						.leftContainer {
-							width: 90%;
-							height: 70%;
-							display: flex;
-							flex-direction: column;
-							justify-content: space-between;
-	
-							.imgContainer {
-								width: 40px;
-								height: 40px;
-								border-radius: 50%;
-								display: flex;
-								align-items: center;
-								justify-content: center;
-	
-								img {
-									width: 80px;
-									padding-left: 30px;
-								}
-							}
-							h2 {
-								font-size: 20px;
-								&:hover {
-									cursor: default;
-								}
-							}
-							p {
-								font-size: 15px;
-								color: black;
-							}
-						}
-					}
-	
-					.right {
-						flex: 0;
-						height: 100%;
-						display: flex;
-						align-items: center;
-						justify-content: center;
-						overflow: hidden;
-	
-						img {
-							display:none;
-						}
-					}
-				
-				}
-			}
-		 }
-	 }
+                &:hover {
+                  cursor: default;
+                }
+              }
+              p {
+                font-size: 15px;
+                color: black;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+              }
+            }
+          }
 
+          .right {
+            flex: 0;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
 
+            img {
+              display: none;
+            }
+          }
+        }
+      }
+    }
+  }
 }

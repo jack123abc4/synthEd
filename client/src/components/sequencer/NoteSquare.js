@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useMutation } from '@apollo/client'
 import Box from '@mui/material/Box';
-import { CREATE_NOTE_BY_NAME, ADD_NOTE_TO_TRACK, TOGGLE_NOTE } from '../../utils/mutations'
+import { CREATE_NOTE_BY_NAME, ADD_NOTE_TO_TRACK, TOGGLE_NOTE } from '../../utils/mutations';
 
 // import { useQuery } from '@apollo/client';
 import { QUERY_NOTE_BY_ID } from '../../utils/queries.js';
@@ -68,6 +68,8 @@ const NoteSquare = (props) => {
           sx={{
             width: 50,
             height: 50,
+            border: '1px solid white',
+            borderRadius: '1.5px',
             backgroundColor: 'rgb(15, 248, 229)',
             opacity: [0.5, 0.5, 0.5],
             '&:hover': {
@@ -75,9 +77,10 @@ const NoteSquare = (props) => {
               opacity: [0.8,0.8,0.8]
               
             },
+
           }} 
           onClick = {handleClick}
-        >{props.noteName}</Box>
+        ></Box>
       );
     }
     else {
@@ -94,7 +97,7 @@ const NoteSquare = (props) => {
             },
           }} 
           onClick = {handleClick}
-        >{props.noteName}</Box>
+        ></Box>
       );
     }
     

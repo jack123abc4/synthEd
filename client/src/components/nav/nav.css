@@ -11,6 +11,11 @@
     background-color: black;
 }
 
+.nav h1:hover {
+    cursor: pointer;
+}
+
+
 
 .nav-menu {
     display: flex;
@@ -27,6 +32,11 @@
 
 .hamburger {
     display: none;
+}
+
+.logoutBtn {
+    font-size: 1.2rem;
+    font-weight: 500;;
 }
 
 .hamburger:hover {
