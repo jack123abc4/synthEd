@@ -30,8 +30,21 @@ const resolvers = {
       }
       return t;
     },
+    tracksByType: async(parent, {type}) => {
+      console.log("TYPE: ",type)
+      const params = type ? { type } : {};
+      const tList = await Track.find({type});
+  
+      return tList;
+    },
     activeNotesByTrack: async(parent, {_id, active, position}) => {
       return await Note.find({trackId: _id, active, position})
+    },
+    allActiveNotesByTrack: async(parent, {_id, active}) => {
+      return await Note.find({trackId: _id, active})
+    },
+    noteByPosition: async(parent, {trackId, name, position}) => {
+      return await Note.findOne({trackId: trackId, name:name, position:position});
     }
 
   },
