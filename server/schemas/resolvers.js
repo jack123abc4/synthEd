@@ -62,6 +62,14 @@ const resolvers = {
     deleteNotes: async(parent, {trackId}) => {
       await Note.deleteMany({trackId: trackId});
       return await Track.find({_id: trackId});
+    },
+    saveTrack: async(parent, {trackId, name}) => {
+        const oldTrack = await Track.find({_id: trackId});
+        
+        // if (oldTrack.type === "sequencer_main") {
+          return await Track.create({name:name, notes: oldTrack.notes, type:"sequencer"})
+        // }
+        // return oldTrack;
     }
   }
 };
