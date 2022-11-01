@@ -68,10 +68,13 @@ const Nav = ({user}) => {
            <Link to='/about'>About Us</Link> 
         </li>
         <li>
+         <Link to='/login'>Logout</Link>
+        </li>
+        {/* <li>
         <Link to='/login'>Login</Link> 
         </li>
         <li className='logoutBtn' onClick={logout}>Logout
-</li> 
+</li>  */}
         </ul>
                        )}
 

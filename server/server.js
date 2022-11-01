@@ -67,7 +67,7 @@ app.use(
 app.use(cookieParser(process.env.SECRET));
 app.use(passport.initialize());
 app.use(passport.session());
-// require("./passportConfig")(passport);
+require("./passportConfig")(passport);
 
 
 
@@ -172,19 +172,19 @@ passport.use(
 );
 
 
-app.get(
-  "/auth/google",
-  passport.authenticate("google", { scope: ["profile"] })
-);
+// app.get(
+//   "/auth/google",
+//   passport.authenticate("google", { scope: ["profile"] })
+// );
 
-app.get(
-  "/auth/google/callback",
-  passport.authenticate("google", { failureRedirect: "/login" }),
-  function (req, res) {
-    // Successful authentication, redirect home.
-    res.redirect("http://localhost:3000");
-  }
-);
+// app.get(
+//   "/auth/google/callback",
+//   passport.authenticate("google", { failureRedirect: "/login" }),
+//   function (req, res) {
+//     // Successful authentication, redirect home.
+//     res.redirect("http://localhost:3000");
+//   }
+// );
 
 app.get("/auth/twitter", passport.authenticate("twitter"));
 
@@ -193,7 +193,7 @@ app.get(
   passport.authenticate("twitter", { failureRedirect: "/login" }),
   function (req, res) {
     // Successful authentication, redirect home.
-    res.redirect("http://localhost:3000");
+    res.redirect("http://localhost:3000/account");
   }
 );
 
