@@ -45,3 +45,13 @@ export const DELETE_NOTES = gql`
     }
   }
 `
+
+export const SAVE_TRACK = gql`
+  mutation saveTrack($name: String, $trackId: String) {
+    saveTrack(trackId: $trackId, name:$name) {
+        _id
+        name
+        type
+    }
+  }
+`

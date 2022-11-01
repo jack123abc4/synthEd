@@ -226,7 +226,7 @@ const SequencerPanel = (props) => {
     return(
         <>
     <button className='playBtn' onClick={handlePlay}>{playState}</button>
-    <SaveModal></SaveModal>
+    <SaveModal trackId={props.trackId}></SaveModal>
     <Grid container>
         {noteSquareGrid.map(function(col) {
             return (col)
