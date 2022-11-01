@@ -74,6 +74,7 @@ const NoteSquare = (props) => {
             borderRadius: '1.5px',
             backgroundColor: 'rgb(15, 248, 229)',
             opacity: [0.5, 0.5, 0.5],
+            transition: '0.3s ease',
             '&:hover': {
               backgroundColor: 'rgb(15, 248, 229)',
               opacity: [0.8,0.8,0.8]
@@ -92,11 +93,13 @@ const NoteSquare = (props) => {
             width: 50,
             height: 50,
             backgroundColor: 'rgb(15, 248, 229)',
+            transition: '0.3s ease',
             '&:hover': {
               backgroundColor: 'rgb(15, 248, 229)',
-              opacity: [0.8,0.8,0.8]
+              opacity: [0.8,0.8,0.8],
               
             },
+
           }} 
           onClick = {handleClick}
         ></Box>
