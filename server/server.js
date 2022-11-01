@@ -28,9 +28,13 @@ const server = new ApolloServer({
 
 const app = express();
 
-app.set("trust proxy", 1);
-
-
+app.use(
+  session({
+    secret: process.env.SECRET,
+    resave: true,
+    saveUninitialized: true,
+  })
+);
 
 mongoose.connect(
   process.env.MONGODB_URI || "mongodb://localhost:27017/synthed",
@@ -52,61 +56,55 @@ app.use(
     credentials: true,
   })
 );
-app.use(
-  session({
-    secret: process.env.SECRET,
-    resave: true,
-    saveUninitialized: true,
-  })
-);
 
-
+app.set("trust proxy", 1);
 
 
 
 app.use(cookieParser(process.env.SECRET));
 app.use(passport.initialize());
 app.use(passport.session());
-require("./passportConfig")(passport);
+// require("./passportConfig")(passport);
 
 
 
 passport.serializeUser((user, done) => {
-  done(null, user);
+  done(null, user.id);
 });
 
-passport.deserializeUser((user, done) => {
-  done(null, user)
+passport.deserializeUser((id, done) => {
+  User.findById(id).then((user) => {
+    done(null, user.id);
   });
-
+});
 
 passport.use(
   new GoogleStrategy(
     {
       clientID:
-        process.env.GOOGLE_CLIENT_ID,
+        process.env.GITHUB_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
       callbackURL: "/auth/google/callback",
     },
-    function (accessToken, refreshToken, profile, done) {
+    function (accessToken, refreshToken, profile, cb) {
       console.log(profile);
-      done(null, profile);
-      // User.findOne({ googleId: profile.id }).then((currentUser) => {
-      //   if (currentUser) {
-      //     console.log("user is", currentUser);
-      //     done(null, currentUser);
-      //   } else {
-      //     new User({
-      //       username: profile.displayName,
-      //       googleId: profile.id,
-      //     })
-      //       .save()
-      //       .then((newUser) => {
-      //         console.log("New User Created" + newUser);
-      //         done(null, newUser);
-      //       });
-      //   }
-      // });
+      cb(null, profile);
+      User.findOne({ googleId: profile.id }).then((currentUser) => {
+        if (currentUser) {
+          console.log("user is", currentUser);
+          done(null, currentUser);
+        } else {
+          new User({
+            username: profile.displayName,
+            googleId: profile.id,
+          })
+            .save()
+            .then((newUser) => {
+              console.log("New User Created" + newUser);
+              done(null, newUser);
+            });
+        }
+      });
     }
   )
 );
@@ -121,22 +119,22 @@ passport.use(
     function (accessToken, refreshToken, profile, cb) {
       console.log(profile);
       cb(null, profile);
-      // User.findOne({ twitterId: profile.id }).then((currentUser) => {
-      //   if (currentUser) {
-      //     console.log("user is", currentUser);
-      //     done(null, currentUser);
-      //   } else {
-      //     new User({
-      //       username: profile.username,
-      //       twitterId: profile.id,
-      //     })
-      //       .save()
-      //       .then((newUser) => {
-      //         console.log("New User Created" + newUser);
-      //         done(null, newUser);
-      //       });
-      //   }
-      // });
+      User.findOne({ twitterId: profile.id }).then((currentUser) => {
+        if (currentUser) {
+          console.log("user is", currentUser);
+          done(null, currentUser);
+        } else {
+          new User({
+            username: profile.username,
+            twitterId: profile.id,
+          })
+            .save()
+            .then((newUser) => {
+              console.log("New User Created" + newUser);
+              done(null, newUser);
+            });
+        }
+      });
     }
   )
 );
@@ -151,40 +149,40 @@ passport.use(
     function (accessToken, refreshToken, profile, cb) {
       console.log(profile);
       cb(null, profile);
-      // User.findOne({ githubId: profile.id }).then((currentUser) => {
-      //   if (currentUser) {
-      //     console.log("user is ", currentUser);
-      //     done(null, currentUser);
-      //   } else {
-      //     new User({
-      //       username: profile.username,
-      //       githubId: profile.id,
-      //     })
-      //       .save()
-      //       .then((newUser) => {
-      //         console.log("New User Created" + newUser);
-      //         done(null, newUser);
-      //       });
-      //   }
-      // });
+      User.findOne({ githubId: profile.id }).then((currentUser) => {
+        if (currentUser) {
+          console.log("user is ", currentUser);
+          done(null, currentUser);
+        } else {
+          new User({
+            username: profile.username,
+            githubId: profile.id,
+          })
+            .save()
+            .then((newUser) => {
+              console.log("New User Created" + newUser);
+              done(null, newUser);
+            });
+        }
+      });
     }
   )
 );
 
 
-// app.get(
-//   "/auth/google",
-//   passport.authenticate("google", { scope: ["profile"] })
-// );
+app.get(
+  "/auth/google",
+  passport.authenticate("google", { scope: ["profile"] })
+);
 
-// app.get(
-//   "/auth/google/callback",
-//   passport.authenticate("google", { failureRedirect: "/login" }),
-//   function (req, res) {
-//     // Successful authentication, redirect home.
-//     res.redirect("http://localhost:3000");
-//   }
-// );
+app.get(
+  "/auth/google/callback",
+  passport.authenticate("google", { failureRedirect: "/login" }),
+  function (req, res) {
+    // Successful authentication, redirect home.
+    res.redirect("http://localhost:3001");
+  }
+);
 
 app.get("/auth/twitter", passport.authenticate("twitter"));
 
@@ -193,7 +191,7 @@ app.get(
   passport.authenticate("twitter", { failureRedirect: "/login" }),
   function (req, res) {
     // Successful authentication, redirect home.
-    res.redirect("http://localhost:3000/account");
+    res.redirect("https://synthed.herokuapp.com/");
   }
 );
 
@@ -207,7 +205,7 @@ app.get(
   passport.authenticate("github", { failureRedirect: "/login" }),
   function (req, res) {
     // Successful authentication, redirect home.
-    res.redirect("http://localhost:3000");
+    res.redirect("https://synthed.herokuapp.com/");
   }
 );
 
