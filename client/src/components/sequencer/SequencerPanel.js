@@ -30,7 +30,7 @@ const SequencerPanel = (props) => {
     // const [nextNotes, setNextNotes] = useQuery(
     //     QUERY_ACTIVE_NOTES_BY_TRACK, {
     //     variables: {position:nextMeasure}});
-    let loop = useRef(null)
+    let [timer,createTimer] = useState(null);
     
     // const { loading, error, data } = useQuery(
     //     QUERY_TRACK_BY_TYPE, {
@@ -69,11 +69,11 @@ const SequencerPanel = (props) => {
   
   useEffect(() => {
     
-    const interval = setInterval(() => getTime(), 1000);
-    const currentStartTime = new Date();
-    setStartTime(currentStartTime.getTime()/1000)
+    // const interval = createTimer(setInterval(() => getTime(), 1000));
+    // const currentStartTime = new Date();
+    // setStartTime(currentStartTime.getTime()/1000)
     
-    return () => clearInterval(interval);
+    // return () => clearInterval(interval);
   }, []);
 
     
@@ -201,33 +201,31 @@ const SequencerPanel = (props) => {
         setCurrentlyPlaying(!currentlyPlaying);
         if (!currentlyPlaying) {
             console.log("Started!")
-            // loop = new Tone.Loop((time) => {
-            //     // triggered every eighth note.
-            //     // console.log(time)
-            //     const currentMeasure = measure
-            //     console.log(currentMeasure,currentMeasure+1)
-            //     setTime(time);
-            //     const- newMeasure = Math.floor(time-startTime)%16
-            //     setMeasure(newMeasure)
-            // }, "8n").start(0);
-            setStartTime(Tone.now())
+            const interval = createTimer(setInterval(() => getTime(), 1000));
+            const currentStartTime = new Date();
+            setStartTime(currentStartTime.getTime()/1000)
             
             
             
         }
         else {
             console.log("Stopped!")
+            clearInterval(timer);
+            createTimer(null);
             // await Tone.context.close();
             
             
         }
 
     }
+    const handleSave = async(event) => {
+
+    }
     let playState = !currentlyPlaying ? "Play" : "Pause";
     return(
         <>
     <button className='playBtn' onClick={handlePlay}>{playState}</button>
-    
+    <button className='saveBtn' onClick={handleSave}></button>
     <Grid container>
         {noteSquareGrid.map(function(col) {
             return (col)
