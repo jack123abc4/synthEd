@@ -7,7 +7,7 @@ const cookieParser = require("cookie-parser");
 const bcrypt = require("bcryptjs");
 const session = require("express-session");
 const cookieSession = require('cookie-session');
-
+const authRoute = require('./auth/auth')
 require("dotenv").config();
 const User = require("./models/User");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
@@ -84,7 +84,7 @@ passport.use(
   new GoogleStrategy(
     {
       clientID:
-        "865152093668-p1pbgc18oe0fealqa4nomn17ut5t9925.apps.googleusercontent.com",
+        process.env.GITHUB_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
       callbackURL: "/auth/google/callback",
     },
@@ -251,7 +251,7 @@ app.post("/register", (req, res) => {
   });
 });
 
-
+app.use("/auth", authRoute);
 // Create a new instance of an Apollo server with the GraphQL schema
 const startApolloServer = async (typeDefs, resolvers) => {
   await server.start();
