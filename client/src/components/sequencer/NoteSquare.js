@@ -66,6 +66,8 @@ const NoteSquare = (props) => {
       return (
         <Box
           sx={{
+            display: 'flex',
+            alignItems: 'center',
             width: 50,
             height: 50,
             border: '1px solid white',
